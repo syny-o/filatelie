@@ -1,0 +1,56 @@
+{% extends '../base/base.html' %}
+
+{% block content %}
+
+<section class="container my-5">
+
+
+
+
+
+    <h1> Nastavení profilu </h1>
+    {% for message in messages %} 
+
+        {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %} 
+        <p class="alert alert-success m-auto text-center w-50 my-5">
+            {{ message }}
+        </p>
+        {% endif %}
+
+        {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+        <p class="alert alert-danger m-auto text-center w-50 my-5">
+            {{ message }}
+        </p>
+        {% endif %}
+
+    {% endfor %}    
+    <p> Vítáme Vás {{ request.user }} </p>
+    <p class="text-center">
+
+        <img class="rounded-circle my-5" width="400px" src="{{ request.user.profile.photo.url }}" alt="">
+    </p>
+
+    <form action="{% url 'logout' %}" method="post">
+        <button class="btn btn-secondary" type="submit">Odhlásit se</button>
+        {% csrf_token %}
+    </form>
+
+</section>
+
+<section class="container my-5">
+    <h2> Změnit údaje </h2>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        {{ user_form.as_p }}
+        {{ profile_form.as_p }}
+
+        <button class="btn btn-secondary" type="submit">Aktualizovat</button>
+    </form>
+
+
+
+</section>
+    
+
+{% endblock %}
