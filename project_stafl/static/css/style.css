@@ -674,3 +674,35 @@ Single Product section style start
   color: var(--light-color);
   background-color: var(--accent-color);
 }
+
+
+
+
+/*--------------------------------------------------------------
+SYNY
+--------------------------------------------------------------*/
+
+
+/* Header */
+.usr-logo{
+  height: 70px;
+  width: 70px;
+}
+
+
+
+/* eSHOP */
+.usr-subcard{
+  height: 250px;
+  width: 250px;
+}
+
+.usr-shop-product img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  
+  
+
+}

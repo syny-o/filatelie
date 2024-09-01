@@ -22,6 +22,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('core.urls')),
     path('account/', include('account.urls')),
+    path('shop/', include('shop.urls')),
 ]
 
 # MEdia files
