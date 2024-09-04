@@ -4,7 +4,8 @@
 <html lang="cs">
 
 <head>
-  <title>Waggy - Free eCommerce Pet Shop HTML Website Template</title>
+  <title>{% block title %}Štafl shop{% endblock title %}</title>
+
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -288,7 +289,7 @@
                   aria-expanded="false">Pages</a>
                 <ul class="dropdown-menu" aria-labelledby="pages">
                   <li><a href="index.html" class="dropdown-item">About Us</a></li>
-                  <li><a href="{% url 'product_list' %}" class="dropdown-item">Shop</a></li>
+                  <li><a href="{% url 'shop:product_list' %}" class="dropdown-item">Shop</a></li>
                   <li><a href="index.html" class="dropdown-item">Single Product</a></li>
                   <li><a href="index.html" class="dropdown-item">Cart</a></li>
                   <li><a href="index.html" class="dropdown-item">Wishlist</a></li>
@@ -304,7 +305,7 @@
                 </ul>
               </li>
               <li class="nav-item">
-                <a href="{% url 'product_list' %}" class="nav-link">Shop</a>
+                <a href="{% url 'shop:product_list' %}" class="nav-link">Shop</a>
               </li>
               <li class="nav-item">
                 <a href="index.html" class="nav-link">Blog</a>
@@ -356,7 +357,7 @@
     </div>
   </header>
 
-  {% include './carousel.html' %}
+
 
   {% block content %}{% endblock %}
 

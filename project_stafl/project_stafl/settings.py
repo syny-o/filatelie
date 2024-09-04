@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'core', # main site
     'shop', # products site
+    'cart', # shopping cart
 ]
 
 MIDDLEWARE = [
@@ -128,3 +129,14 @@ MEDIA_ROOT = BASE_DIR/'media' # Path to the project root media folder
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+
+# Custom settings
+
+
+
+# Cart
+# This is the key that you are going to use to store the cart in the user session. Since Django sessions are managed per visitor, 
+# you can use the same cart session key for all sessions.
+CART_SESSION_ID = 'CART'
