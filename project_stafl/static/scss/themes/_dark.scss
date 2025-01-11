@@ -1,0 +1,304 @@
+body {
+  &.dark {
+    .text-dark {
+      color: rgba(255, 255, 255, 0.9) !important;
+    }
+    .table {
+      --bs-table-border-color: rgba(255, 255, 255, 0.1) !important;
+    }
+    .main-header {
+      background-color: rgba(var(--white), 1);
+    }
+    .search-offcanvas {
+      .offcanvas-header {
+        background-color: rgb(39, 43, 43);
+        h5 {
+          color: rgba(var(--black), 1);
+        }
+      }
+      .offcanvas-body {
+        background-color: rgb(39, 43, 43);
+        .search-content {
+          .form-control {
+            background-color: rgba(var(--white), 1);
+          }
+        }
+      }
+    }
+    .modal {
+      &.newsletter-modal {
+        .btn-close {
+          filter: invert(1);
+        }
+        .news-latter-box {
+          .news-latter-content {
+            input {
+              color: rgba(255, 255, 255, 0.9);
+              background-color: transparent;
+            }
+            .news-latter-logo {
+              .light-logo {
+                display: none;
+              }
+
+              .dark-logo {
+                display: block;
+              }
+            }
+          }
+          &.newslatter-3 {
+            .news-latter-content {
+              .text-img {
+                filter: invert(1);
+              }
+            }
+          }
+        }
+      }
+    }
+    .main-logo {
+      .light-logo {
+        display: none;
+      }
+
+      .dark-logo {
+        display: block;
+      }
+    }
+    .form-select {
+      &.size-select {
+        option {
+          background-color: rgb(39, 43, 43);
+        }
+      }
+    }
+    .right-product-box {
+      .pagination {
+        .page-item {
+          .page-link {
+            background-color: rgb(39, 43, 43);
+            &.active {
+              background-color: rgba(var(--theme-color), 1);
+            }
+            &:hover {
+              background-color: rgba(var(--theme-color), 1);
+            }
+          }
+        }
+      }
+    }
+    .shop-collection-section {
+      .left-sidebox {
+        .collection-filter {
+          .accordion-section {
+            background-color: rgb(39, 43, 43);
+          }
+          .filter-box {
+            border-bottom-color: rgba(255, 255, 255, 0.1);
+          }
+        }
+      }
+    }
+    .counter-btn {
+      .counter {
+        border-color: rgba(255, 255, 255, 0.1);
+      }
+    }
+    .top-filter-box {
+      li {
+        &.onclick-title {
+          background-color: rgb(39, 43, 43);
+        }
+      }
+    }
+    .grid-filter-box {
+      .grid-option {
+        border-color: rgba(255, 255, 255, 0.2);
+        li {
+          button.grid-btn {
+            border-color: rgba(255, 255, 255, 0.2);
+          }
+        }
+      }
+    }
+    .form-select {
+      &.size-select {
+        background-color: transparent;
+      }
+    }
+    .filter-tab {
+      .filter-btn-style {
+        background-color: transparent;
+        border-color: rgba(255, 255, 255, 0.1);
+        &.active {
+          background-color: rgba(var(--theme-color), 1);
+        }
+      }
+    }
+    .featured-menu {
+      &.dropdown {
+        .drop-btn {
+          border-color: rgba(255, 255, 255, 0.2);
+        }
+      }
+    }
+    .breadcrumb {
+      background-color: rgb(39, 43, 43);
+    }
+    .product-box {
+      .product-img-box {
+        .label-box {
+          .product-option {
+            a {
+              background-color: rgb(39, 43, 43);
+            }
+          }
+        }
+      }
+    }
+    .dashboard-section {
+      .avatar-upload {
+        .avatar-preview {
+          border-color: rgba(26, 26, 26, 1);
+        }
+      }
+    }
+    .swiper-nav {
+      &.swiper-nav-box {
+        .swiper-button-next,
+        .swiper-button-prev {
+          background-color: rgb(39, 43, 43);
+          box-shadow: none;
+        }
+      }
+    }
+
+    .product-tab-section {
+      .shop-banner {
+        &::after {
+          content: "";
+          background: linear-gradient(
+            to bottom,
+            rgba(199, 199, 199, 0) 0%,
+            rgba(255, 255, 255, 0.8) 75%
+          );
+        }
+      }
+    }
+
+    .full-banner-slider-section {
+      background-color: rgba(26, 26, 26, 1);
+    }
+
+    .blog-logo-img {
+      img {
+        filter: invert(1);
+      }
+    }
+
+    .grid-option {
+      img {
+        filter: invert(1);
+      }
+    }
+
+    .brand-setion {
+      .swiper {
+        .swiper-wrapper {
+          .swiper-slide {
+            .brand-img {
+              img {
+                filter: invert(1) brightness(100);
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .categories-section {
+      .swiper {
+        .swiper-wrapper {
+          .swiper-slide {
+            .round-img-box {
+              img {
+                filter: invert(1) brightness(100);
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .footer-section {
+      background-color: rgb(39, 43, 43);
+      .menu-box {
+        .footer-menu {
+          .news-input {
+            border: 1.5px solid rgba(var(--white), 1);
+            background-color: rgba(var(--white), 1);
+
+            input {
+              &::placeholder {
+                color: #777;
+              }
+            }
+
+            .footer-btn {
+              background-color: #000;
+              color: #fff;
+              border: 1px solid #000;
+            }
+          }
+          .news-latter-input {
+            input {
+              background-color: rgba(var(--white), 1);
+            }
+          }
+        }
+      }
+    }
+
+    .product-table {
+      &.table-striped > tbody > tr:nth-of-type(odd) > * {
+        --bs-table-bg-type: #131210;
+      }
+
+      &.table > :not(caption) > * > * {
+        background-color: rgb(39, 43, 43);
+      }
+
+      tr {
+        td {
+          border-bottom: none;
+        }
+      }
+    }
+
+    .accordion {
+      &.accordion-section {
+        .accordion-item {
+          border-bottom: 1px solid #323232;
+        }
+      }
+    }
+  }
+
+  &.color-2 {
+    &.dark {
+      .swiper-nav {
+        &.swiper-nav-box {
+          .swiper-button-next,
+          .swiper-button-prev {
+            background-color: rgb(39, 43, 43);
+            box-shadow: none;
+
+            i {
+              color: #fff;
+            }
+          }
+        }
+      }
+    }
+  }
+}

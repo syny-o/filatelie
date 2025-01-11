@@ -1,0 +1,48 @@
+.right-product-box {
+    .pagination {
+        @include display;
+        gap: 20px;
+
+        .page-item {
+            line-height: 1;
+
+            &:first-child,
+            &:last-child {
+                .page-link {
+                    width: auto;
+                    padding: 0 20px;
+                }
+            }
+
+            .page-link {
+                border: none;
+                color: rgba(var(--black), 1);
+                line-height: 1;
+                border-radius: 0;
+                // padding: 10px 17px;
+                background-color: #f8f8f8;
+                font-size: 18px;
+                font-weight: 600;
+                @include display;
+                width: 40px;
+                height: 40px;
+
+                &.active {
+                    box-shadow: none;
+                    background-color: rgba(var(--theme-color), 1);
+                    color: rgba(var(--white), 1);
+                }
+
+                &:focus {
+                    box-shadow: none;
+                }
+
+                &:hover {
+                    box-shadow: none;
+                    background-color: rgba(var(--theme-color), 1);
+                    color: rgba(var(--white), 1);
+                }
+            }
+        }
+    }
+}

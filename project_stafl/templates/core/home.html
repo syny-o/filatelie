@@ -1,11 +1,220 @@
 {% extends '../base/base.html' %}
 
+{% load static %}
+
 {% block content %}
 
-<section class="container">
-    <h1> Home </h1>
-    <p> Welcome to the home page </p>
+<!-- ========== Start hero Section ========== -->
+<section class="tab-banner-section">
+    <span class="star-1 star d-lg-block d-none">
+        <svg>
+            <use xlink:href="{% static 'images/svg/shape.svg#shape' %}"></use>
+        </svg>
+    </span>
+    <span class="star-2 star">
+        <svg>
+            <use xlink:href="{% static 'images/svg/shape.svg#shape' %}"></use>
+        </svg>
+    </span>
+    <span class="star-3 star d-md-block d-none">
+        <svg>
+            <use xlink:href="{% static 'images/svg/shape.svg#shape' %}"></use>
+        </svg>
+    </span>
+    <span class="star-4 star d-md-block d-none">
+        <svg>
+            <use xlink:href="{% static 'images/svg/shape.svg#shape' %}"></use>
+        </svg>
+    </span>
+    <div class="custom-container">
+        <h3 class="banner-title">Filatelie Štafl</h3>
+        <p class="tab-banner-content">
+            Poklady historie: Prodej známek, mincí a sběratelských rarit
+        </p>
+
+        <div class="row align-items-center w-100">
+            <div class="col-lg-4 col-md-12">
+                <div class="nav tab-nav-btn" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                    <button class="nav-link active" id="v-pills-home-tab" data-bs-toggle="pill"
+                        data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home"
+                        aria-selected="true">
+                        Mince
+                    </button>
+                    <button class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill"
+                        data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile"
+                        aria-selected="false">
+                        Známky
+                    </button>
+                    <button class="nav-link" id="v-pills-messages-tab" data-bs-toggle="pill"
+                        data-bs-target="#v-pills-messages" type="button" role="tab" aria-controls="v-pills-messages"
+                        aria-selected="false">
+                        Odznaky
+                    </button>
+                    <button class="nav-link" id="v-pills-settings-tab" data-bs-toggle="pill"
+                        data-bs-target="#v-pills-settings" type="button" role="tab" aria-controls="v-pills-settings"
+                        aria-selected="false">
+                        Ostatní
+                    </button>
+                </div>
+            </div>
+            <div class="col-lg-8 g-0 col-md-12">
+                <div class="tab-content tab-img-contact" id="v-pills-tabContent">
+                    <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel"
+                        aria-labelledby="v-pills-home-tab">
+                        <div class="row g-md-4 g-3 img-align-box">
+                            <div class="col-6">
+                                <div class="animate-text-box">
+                                    <a href="#!">
+                                        <img src="{% static 'images/product/front/penny.jpg' %}"
+                                            class="img-fluid img-round" alt="" />
+                                    </a>
+
+                                </div>
+                            </div>
+                            <div class="col-6 big-img ratio_130">
+                                <a href="#!" class="rounded-top-4">
+                                    <img src="{% static 'images/product/front/penny2.jpg' %}" class="bg-img" alt="" />
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="v-pills-profile" role="tabpanel"
+                        aria-labelledby="v-pills-profile-tab">
+                        <div class="row g-md-3 g-3 img-align-box">
+                            <div class="col-6 ratio_landscape_1">
+                                <div class="animate-text-box">
+                                    <a href="#!" class="img-round">
+                                        <img src="{% static 'images/product/front/9.jpg' %}" class="bg-img" alt="" />
+                                    </a>
+
+                                </div>
+                            </div>
+                            <div class="col-6 big-img ratio_130">
+                                <a href="#!" class="rounded-top-4">
+                                    <img src="{% static 'images/product/front/31.jpg' %}" class="bg-img" alt="" />
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="v-pills-messages" role="tabpanel"
+                        aria-labelledby="v-pills-messages-tab">
+                        <div class="row g-md-3 g-3 img-align-box">
+                            <div class="col-6 ratio_landscape_1">
+                                <div class="animate-text-box">
+                                    <a href="#!" class="img-round">
+                                        <img src="{% static 'images/product/shoes/1.jpg' %}" class="bg-img" alt="" />
+                                    </a>
+
+                                </div>
+                            </div>
+                            <div class="col-6 big-img ratio_130">
+                                <a href="#!" class="rounded-top-4">
+                                    <img src="{% static 'images/product/shoes/2.jpg' %}" class="bg-img" alt="" />
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="v-pills-settings" role="tabpanel"
+                        aria-labelledby="v-pills-settings-tab">
+                        <div class="row g-md-3 g-3 img-align-box">
+                            <div class="col-6 ratio_landscape_1">
+                                <div class="animate-text-box">
+                                    <a href="#!" class="img-round">
+                                        <img src="{% static 'images/product/accessories/1.jpg' %}" class="bg-img"
+                                            alt="" />
+                                    </a>
+
+                                </div>
+                            </div>
+                            <div class="col-6 big-img ratio_130">
+                                <a href="#!" class="rounded-top-4">
+                                    <img src="{% static 'images/product/accessories/5.jpg' %}" class="bg-img" alt="" />
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
-    
+<!-- ========== End hero Section ========== -->
+
+
+
+
+<!-- ========== Start Categories Section ========== -->
+<section class="categories-section my-5">
+    <div class="custom-container">
+        <div class="title-flex section-sm-b-space">
+            <h2 class="title">Naše nabídka</h2>
+            <div class="swiper-nav swiper-nav-box">
+                <div class="swiper-button-prev swiper-seller-prev">
+                    <i class="ri-arrow-left-s-line"></i>
+                </div>
+                <div class="swiper-button-next swiper-seller-next">
+                    <i class="ri-arrow-right-s-line"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="swiper categories-swiper">
+            <div class="swiper-wrapper ratio_product">
+                <div class="swiper-slide">
+                    <div class="categories-items">
+                        <a href="#">
+                            <img src="{% static 'images/categories/coin.jpg' %}" class="bg-img w-100" alt="" />
+                        </a>
+                        <a href="#">
+                            <h5>Mince</h5>
+                        </a>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="categories-items">
+                        <a href="#">
+                            <img src="{% static 'images/categories/stamp.jpg' %}" class="bg-img w-100" alt="" />
+                        </a>
+                        <a href="#">
+                            <h5>Známky</h5>
+                        </a>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="categories-items">
+                        <a href="#">
+                            <img src="{% static 'images/categories/odznak.jpg' %}" class="bg-img w-100" alt="" />
+                        </a>
+                        <a href="#">
+                            <h5>Odznaky</h5>
+                        </a>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="categories-items">
+                        <a href="#">
+                            <img src="{% static 'images/categories/cash.png' %}" class="bg-img w-100" alt="" />
+                        </a>
+                        <a href="#">
+                            <h5>Ostatní</h5>
+                        </a>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="categories-items">
+                        <a href="#">
+                            <img src="{% static 'images/categories/14.jpg' %}" class="bg-img w-100" alt="" />
+                        </a>
+                        <a href="#">
+                            <h5>Shirt</h5>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- ========== End Categories Section ========== -->
+
 
 {% endblock %}

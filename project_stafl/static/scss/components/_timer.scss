@@ -1,0 +1,94 @@
+.countdown {
+    max-width: max-content;
+    padding: 10px 20px;
+    margin-bottom: 20px;
+    background-color: rgba(var(--theme-color), 0.1);
+
+    &.coming-timer {
+        margin: auto;
+        background-color: transparent;
+        @include display;
+        flex-direction: column;
+        gap: 15px;
+        padding: 0;
+
+        .clockdiv1 {
+            gap: calc(13px + (30 - 13) * ((100vw - 320px) / (1920 - 320)));
+
+            li {
+                .title {
+                    color: rgba(var(--black), 0.6);
+                }
+
+                .timer {
+
+                    .time-letter {
+                        color: rgba(var(--black), 1);
+                        font-size: calc(16px + (36 - 16) * ((100vw - 320px) / (1920 - 320)));
+                        font-weight: 500;
+                    }
+                }
+            }
+
+            .dot {
+                color: rgba(var(--theme-color), 1);
+                font-size: 20px;
+            }
+        }
+    }
+
+    &.hearder-timer {
+
+        .clockdiv1 {
+            display: flex;
+            gap: 20px;
+            text-align: center;
+            align-items: center;
+
+            .dot {
+                font-weight: 700;
+            }
+
+            li {
+                .timer {
+                    text-align: center;
+
+                    .time-letter {
+                        font-size: calc(18px + (20 - 18) * ((100vw - 320px) / (1920 - 320)));
+                        font-weight: 600;
+                    }
+                }
+
+                span {
+                    font-size: 14px;
+                }
+            }
+        }
+    }
+
+    .clockdiv1 {
+        display: flex;
+        gap: 20px;
+        text-align: center;
+        align-items: center;
+
+        .dot {
+            font-weight: 700;
+        }
+
+        li {
+            .timer {
+                text-align: center;
+
+                .time-letter {
+                    font-size: 20px;
+                    font-weight: 600;
+                }
+            }
+
+            span {
+                font-size: 14px;
+            }
+        }
+    }
+}

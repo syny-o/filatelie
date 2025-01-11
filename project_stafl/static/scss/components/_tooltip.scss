@@ -1,0 +1,43 @@
+.tooltip-inner {
+    background-color: rgba(var(--theme-color), 1);
+    font-size: 12px;
+}
+
+.tooltip-arrow {
+    &::before {
+        content: '';
+        border-top-color: rgba(var(--theme-color), 1);
+    }
+}
+
+.bs-tooltip-auto[data-popper-placement^="top"] {
+    .tooltip-arrow {
+        &::before {
+            border-top-color: rgba(var(--theme-color), 1);
+        }
+    }
+}
+
+.bs-tooltip-auto[data-popper-placement^="bottom"] {
+    .tooltip-arrow {
+        &::before {
+            border-bottom-color: rgba(var(--theme-color), 1);
+        }
+    }
+}
+
+.bs-tooltip-auto[data-popper-placement^="left"] {
+    .tooltip-arrow {
+        &::before {
+            border-left-color: rgba(var(--theme-color), 1);
+        }
+    }
+}
+
+.bs-tooltip-auto[data-popper-placement^="right"] {
+    .tooltip-arrow {
+        &::before {
+            border-right-color: rgba(var(--theme-color), 1);
+        }
+    }
+}

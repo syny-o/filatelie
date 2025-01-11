@@ -1,0 +1,34 @@
+[dir="rtl"] {
+    .feature-slider {
+        div {
+            .features {
+                animation: slide-right 20s linear infinite;
+            }
+        }
+    }
+    .swiper {
+        direction: ltr;
+    }
+    .home-section {
+        .swiper{
+            direction: rtl !important;
+        }
+        &.demo-slider {
+            .demo-1-slider {
+                direction: ltr !important;
+            }
+        }
+    }
+    .ms-auto{
+        margin-left: auto !important;
+        margin-right: unset !important;
+    }
+
+    input[type="email"],
+    input[type="number"],
+    input[type="date"],
+    input[type="tel"] {
+        direction: unset;
+    }
+}
+

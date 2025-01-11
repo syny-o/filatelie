@@ -1,0 +1,42 @@
+:root {
+  --black: 0, 0, 0;
+  --white: 255, 255, 255;
+  --yellow: 255, 157, 0;
+  --success: 39, 125, 42;
+  --insta: 255, 0, 0;
+  --theme-color: 53, 191, 191;
+  --alert: 234, 73, 73;
+  --backgroung: 229, 229, 229;
+  --title-color: 34, 34, 34;
+  --content-color: 153, 153, 153;
+}
+
+$jost: "Mukta Vaani", sans-serif;
+
+$montserrat: "Montserrat", sans-serif;
+
+.dark {
+  --black: 255, 255, 255;
+  --white: 23, 28, 28;
+  --backgroung: 119, 119, 119;
+  --title-color: 255, 255, 255;
+  --content-color: 185, 185, 185;
+}
+.color-2 {
+  --theme-color: 0, 0, 0;
+}
+.color-3 {
+  --theme-color: 131, 191, 110;
+}
+.color-4 {
+  --theme-color: 213, 89, 104;
+}
+.color-5 {
+  --theme-color: 249, 104, 87;
+}
+.color-6 {
+  --theme-color: 137, 129, 33;
+}
+.color-7 {
+  --theme-color: 116, 186, 171;
+}
