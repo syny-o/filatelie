@@ -2,6 +2,9 @@ from django.db import models
 from django.conf import settings
 
 
+DEFAULT_PHOTO = 'img/blank-profile.png'
+
+
 class Profile(models.Model):
     user = models.OneToOneField(
         settings.AUTH_USER_MODEL,
@@ -12,7 +15,7 @@ class Profile(models.Model):
     
     photo = models.ImageField(
         upload_to='users/%Y/%m/%d/',
-        blank=True,
+        default=DEFAULT_PHOTO,
         verbose_name='Fotografie'
     )
 
@@ -21,7 +24,8 @@ class Profile(models.Model):
     
 
     def delete(self, *args, **kwargs):
-        self.photo.delete()
+        if self.photo.name != DEFAULT_PHOTO:
+            self.photo.delete()
         super().delete(*args, **kwargs)
 
     class Meta:

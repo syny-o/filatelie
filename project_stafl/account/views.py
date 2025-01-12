@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 
 from .forms import UserRegistrationForm, ProfileForm, UserEditForm
+from .models import Profile
 
 
 
@@ -64,6 +65,10 @@ def register(request):
             new_user = form.save(commit=False)
             new_user.set_password(form.cleaned_data['password'])  # set_password() is secure way to save password (hashing)
             new_user.save()
+
+            # Create the user profile
+            Profile.objects.create(user=new_user)
+
             return render(request, 'account/register_done.html', {'new_user': new_user})
         
 
@@ -71,6 +76,9 @@ def register(request):
         form = UserRegistrationForm()
         return render(request, 'account/register.html', {'user_form': form})
     
+
+
+
 
 
 def edit(request):
