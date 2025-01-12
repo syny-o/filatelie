@@ -2,16 +2,91 @@
 
 {% block content %}
 
-<section class="container">
-    <h1>Create an account</h1>
-    <p>Please, sign up using the following form:</p>
-    <form method="post">
-        {{ user_form.as_p }}
-        {% csrf_token %}
-        <p><input type="submit" value="Create my account"></p>
-    </form>    
 
+
+<!-- ========== Start Register Section ========== -->
+<section class="section-b-space section-t-space login-bg-img">
+    <div class="custom-container login-page">
+        <div class="row align-items-center">
+
+            <div class="col-lg-6 mx-auto">
+                <div class="log-in-box">
+                    <div class="log-in-title">
+                        <h4>Vítejte</h4>
+                        <p>Vytvořit účet</p>
+                    </div>
+                    <div class="login-box">
+                        <!-- FORM START -->
+                        <form class="row g-3" action="{% url 'account:register' %}" method="post">
+                            {% csrf_token %}
+                            <div class="form-floating mb-3">
+                                {{ form.username }}
+                                <label for="usernameInput">Uživatelské jméno</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                {{ form.email }}
+                                <label for="emailInput">Email</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                {{ form.password }}
+                                <label for="passwordInput">Heslo</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                {{ form.password2 }}
+                                <label for="password2Input">Heslo (znovu)</label>
+                            </div>
+                            <div class="col-12">
+                                <input type="hidden" name="next" value="{% url 'account:dashboard' %}" />
+                                <button class="btn solid-btn addtocart-btn w-100" type="submit" data-bs-dismiss="modal"
+                                    aria-label="Close">
+                                    <div class="button-text">
+                                        <span>Vytvořit účet</span>
+                                    </div>
+                                </button>
+                            </div>
+                            {% if form.errors %}
+                            <p class="text-danger">
+                                Your username and password didn't match.
+                                Please try again.
+                                {{form.errors}}
+                            </p>
+
+                            {% endif %}
+
+
+                        </form>
+                        <!-- FORM END -->
+                    </div>
+                    <div class="other-log-in">
+                        <h6>NEBO</h6>
+                    </div>
+                    <div class="log-in-button">
+                        <ul>
+                            <li>
+                                <a href="https://www.google.com/" target="_blank">
+                                    <i class="fa-brands fa-google me-2"> </i>Google</a>
+                            </li>
+                            <li>
+                                <a href="https://www.facebook.com/" target="_blank"><i
+                                        class="fa-brands fa-facebook-f me-2"></i>Facebook
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="other-log-in"></div>
+                    <div class="sign-up-box">
+                        <p>Již máte účett?</p>
+                        <a href="{% url 'account:login' %}">Přihlaste se </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
-    
+<!-- ========== End Register Section ========== -->
+
+
+
+
 
 {% endblock %}

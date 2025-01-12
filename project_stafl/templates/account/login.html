@@ -1,28 +1,94 @@
 {% extends '../base/base.html' %}
 
+{% load static %}
+
 {% block content %}
 
-<section class="container py-5 text-center">
-    <h1> Login </h1>
 
-    {% if form.errors %}
-    <p>
-    Your username and password didn't match.
-    Please try again.
-    </p>
-    {% else %}
-    <p>Please, use the following form to log-in:</p>
-    {% endif %}
-    <div class="login-form">
-        <form action="{% url 'login' %}" method="post">
-        {{ form.as_p }}
-        {% csrf_token %}
-        <input type="hidden" name="next" value="{% url 'dashboard' %}" />
-        <p><input type="submit" value="Log-in"></p>
-        </form>
+
+
+
+
+
+
+
+<!-- ========== Start login Section ========== -->
+<section class="section-b-space section-t-space login-bg-img">
+    <div class="custom-container login-page">
+        <div class="row align-items-center">
+
+
+
+
+
+
+            <div class="col-lg-6 mx-auto">
+                <div class="log-in-box">
+                    <div class="log-in-title">
+                        <h4>Vítejte zpět!</h4>
+                        <p>Přihlášení</p>
+                    </div>
+                    <div class="login-box">
+                        <!-- FORM START -->
+                        <form class="row g-3" action="{% url 'account:login' %}" method="post">
+                            {% csrf_token %}
+                            <div class="form-floating mb-3">
+                                {{ form.username }}
+                                <label for="usernameInput">Uživatelské jméno</label>
+                            </div>
+
+                            <div class="form-floating mb-3">
+                                {{ form.password }}
+                                <label for="passwordInput">Heslo</label>
+                            </div>
+                            <div class="col-12">
+                                <input type="hidden" name="next" value="{% url 'account:dashboard' %}" />
+                                <button class="btn solid-btn addtocart-btn w-100" type="submit" data-bs-dismiss="modal"
+                                    aria-label="Close">
+                                    <div class="button-text">
+                                        <span>Přihlásit</span>
+                                    </div>
+                                </button>
+                            </div>
+                            {% if form.errors %}
+                            <p class="text-danger">
+                                Your username and password didn't match.
+                                Please try again.
+                            </p>
+
+                            {% endif %}
+
+
+                        </form>
+                        <!-- FORM END -->
+                    </div>
+                    <div class="other-log-in">
+                        <h6>NEBO</h6>
+                    </div>
+                    <div class="log-in-button">
+                        <ul>
+                            <li>
+                                <a href="https://www.google.com/" target="_blank">
+                                    <i class="fa-brands fa-google me-2"> </i>Google</a>
+                            </li>
+                            <li>
+                                <a href="https://www.facebook.com/" target="_blank"><i
+                                        class="fa-brands fa-facebook-f me-2"></i>Facebook
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="other-log-in"></div>
+                    <div class="sign-up-box">
+                        <p>Nemáte účet?</p>
+                        <a href="{% url 'account:register' %}">Zaregistrujte se</a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
- 
 </section>
-    
+<!-- ========== End login Section ========== -->
+
 
 {% endblock %}

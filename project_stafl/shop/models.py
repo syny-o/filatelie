@@ -52,6 +52,9 @@ class Product(models.Model):
             models.Index(fields=['name']),
             models.Index(fields=['-created']),
         ]
+        
+        verbose_name = 'Produkt'
+        verbose_name_plural = 'Produkty'
     
     
     def __str__(self):

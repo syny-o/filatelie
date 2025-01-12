@@ -9,7 +9,7 @@ from .models import Profile
 
 
 
-@login_required(login_url='login')
+@login_required(login_url='account:login')
 def dashboard(request):
 
     if request.method == 'GET':
@@ -71,10 +71,13 @@ def register(request):
 
             return render(request, 'account/register_done.html', {'new_user': new_user})
         
+        else:
+            return HttpResponse("form is not valid")
+        
 
     if request.method == 'GET':
         form = UserRegistrationForm()
-        return render(request, 'account/register.html', {'user_form': form})
+        return render(request, 'account/register.html', {'form': form})
     
 
 
