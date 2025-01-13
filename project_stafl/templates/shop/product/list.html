@@ -1,71 +1,69 @@
 {% extends '../../base/base.html' %}
 
+{% load static %}
+
 {% block content %}
 
 
+{% include 'base/breadcrumb.html' %}
 
-<div class="container my-5 py-5">
 
-    <div class="section-header d-md-flex justify-content-between align-items-center">
-      <h2 class="display-3 fw-normal">Obchod</h2>
-      <div class="mb-4 mb-md-0">
-        <p class="m-0">
-            <button class="filter-button me-4  active" data-filter="*">Vše</button>
-            {% for category in categories %}
-                <button class="filter-button me-4" data-filter=".{{ category.slug }}">{{ category.name }}</button>
-            {% endfor %}
-        </p>
+<!-- ========== Start COLLECTION Section ========== -->
+<section class="shop-collection-section section-md-t-space section-b-space">
+  <div class="custom-container">
+    <div class="row g-xl-4 g-lg-5">
+      <div class="col-xxl-3 col-lg-4">
+        {% include './filter.html' %}
       </div>
+      <div class="col-xxl-9 col-lg-8">
+        <div class="right-product-box">
+          <div class="grid-filter-box">
 
-    </div>
+            <h4>{{ products|length }} product found</h4>
+            <div class="right-side-filter">
+              <span class="sort-by-title">Sort By:</span>
+              <div class="dropdown featured-menu right-featured-menu">
 
-    <div class="isotope-container row">
+                <form id="ordering-form" action="{% url 'shop:product_list' %}">
+                  {% for c in selected_categories %}
+                  <input type="hidden" name="categories" value="{{ c }}">
+                  {% endfor %}
+                  <select id="ordering-combo" name="ordering-criteria" class="drop-btn dropdown-toggle select-dropdown">
+                    <option value="price" {% if ordering_criteria == "price" %} selected {% endif %} 
+                      class="dropdown-item select-item">dle ceny vzestupně</option>
+                    <option value="-price" {% if ordering_criteria == "-price" %} selected {% endif %}
+                      class="dropdown-item select-item">dle ceny sestupně</option>
 
-      
-    {% for product in products %}
-      <div class="usr-shop-product item {{ product.category.slug }} col-md-4 col-lg-3 my-4">
-        <!-- <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
-          New
-        </div> -->
-        <div class="usr-card card position-relative">
-            <div class="usr-subcard">
-                <a href="{{ product.get_absolute_url }}"><img src="{{ product.image.url }}" class="img-fluid rounded-4" alt="image"></a>
-            </div>
-          <div class="card-body p-0">
-            <a href="single-product.html">
-              <h3 class="card-title pt-4 m-0">{{ product.name }}</h3>
-            </a>
-
-            <div class="card-text">
-              <span class="rating secondary-font">
-                <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                5.0</span>
-
-              <h3 class="secondary-font text-primary">{{ product.price }} Kč</h3>
-
-              <div class="d-flex flex-wrap mt-3">
-                <a href="#" class="btn-cart me-3 px-4 pt-3 pb-3">
-                  <h5 class="text-uppercase m-0">Do košíku</h5>
-                </a>
-                <a href="#" class="btn-wishlist px-4 pt-3 ">
-                  <iconify-icon icon="fluent:heart-28-filled" class="fs-5"></iconify-icon>
-                </a>
+                    <option value="name" {% if ordering_criteria == "name" %} selected {% endif %} 
+                      class="dropdown-item select-item">Od A po Z</option>
+                    <option value="-name" {% if ordering_criteria == "-name" %} selected {% endif %}
+                      class="dropdown-item select-item">Od Z po A</option>
+                  </select>
+                </form>
               </div>
-
-
             </div>
+          </div>
+          <div
+            class="row product-list-section g-sm-4 g-3 row-cols-xxl-4 row-cols-xl-3 row-cols-lg-2 row-cols-md-3 row-cols-2 mt-0 ratio_product load-more-list"
+            id="load-more-list">
+
+            {% include './cards.html' %}
+
 
           </div>
-        </div>
 
+        </div>
       </div>
-        {% endfor %}
-    
     </div>
-    
+  </div>
+</section>
+<!-- ========== End COLLECTION Section ========== -->
+
+
+<script>
+  document.getElementById('ordering-combo').addEventListener('change', function () {
+    document.getElementById('ordering-form').submit(); // Automatically submit the form
+  });
+</script>
 
 {% endblock %}

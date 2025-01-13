@@ -1,0 +1,46 @@
+{% for product in products %}
+<div class="col-grid-box show">
+    <div class="product-box">
+        <div class="product-img-box">
+            <div class="label-box">
+                <div class="product-option">
+                    <a href="#!" class="like-btn wishlist-btn p-0 animate inactive">
+                        <i class="ri-heart-3-fill fill-icon fill-two"></i>
+                        <i class="ri-heart-3-line outline-icon like-two"></i>
+                    </a>
+                    <a href="#!" class="sub-link mt-0" data-bs-toggle="modal" data-bs-target="#view"><i
+                            class="ri-eye-line"></i></a>
+                    <a href="#!"><i class="ri-loop-right-fill"></i></a>
+                </div>
+            </div>
+            <div class="front">
+                <a href="{% url 'shop:product_detail' product.id product.slug %}">
+                    <img src="{{ product.image.url }}" class="bg-img w-100" alt="" />
+                </a>
+            </div>
+            <div class="back">
+                <a href="{% url 'shop:product_detail' product.id product.slug %}">
+                    <img src="assets/images/product/back/2.jpg" class="bg-img w-100" alt="" />
+                </a>
+            </div>
+            <div class="product-btn">
+                <a href="#" class="btn solid-btn addtocart-btn">
+                    <div class="button-text">
+                        <span>Mám zájem</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="product-detail">
+            <div class="product-name-box">
+                <a href="{% url 'shop:product_detail' product.id product.slug %}" class="product-name">{{product.name}}</a>
+
+            </div>
+            <p class="list-detail">
+                {{ product.description }}
+            </p>
+            <h6 class="product-price">{{ product.price}} Kč</h6>
+        </div>
+    </div>
+</div>
+{% endfor %}

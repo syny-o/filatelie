@@ -1,27 +1,193 @@
 {% extends "../../base/base.html" %}
 {% load static %}
 {% block title %}
-  {{ product.name }}
+{{ product.name }}
 {% endblock %}
 {% block content %}
-  <div class="container">
-    <div class="product-detail d-flex gap-5 p-5">
-      <div class="w-50 text-center">
-        <img style="width: 300px;" src="{% if product.image %}{{ product.image.url }}{% else %}
-      {% static 'img/no_image.png' %}{% endif %}">
+<!-- product-section-start -->
+<section class="product-section section-t-space my-5">
+  <div class="custom-container">
+    <div class="row g-4">
+      <div class="col-lg-6">
+        <div class="product-slider-box">
+          <div class="row">
+            <div class="col-xl-12">
+              <div class="swiper product-no-thumb">
+                <div class="swiper-wrapper">
+                  <div class="swiper-slide">
+                    <figure class="zoom" onmousemove="zoom(event)" style="
+                            background-image: url('assets/images/product/front/22.jpg');
+                          ">
+                      <img src="{{ product.image.url }}" class="w-100" alt="" />
+                    </figure>
+                  </div>
+                  <div class="swiper-slide">
+                    <figure class="zoom" onmousemove="zoom(event)" style="
+                            background-image: url('assets/images/product/front/22_1.jpg');
+                          ">
+                      <img src="assets/images/product/front/22_1.jpg" class="w-100" alt="" />
+                    </figure>
+                  </div>
+                  <div class="swiper-slide">
+                    <figure class="zoom" onmousemove="zoom(event)" style="
+                            background-image: url('assets/images/product/front/22_2.jpg');
+                          ">
+                      <img src="assets/images/product/front/22_2.jpg" class="w-100" alt="" />
+                    </figure>
+                  </div>
+                  <div class="swiper-slide">
+                    <figure class="zoom" onmousemove="zoom(event)" style="
+                            background-image: url('assets/images/product/front/22_3.jpg');
+                          ">
+                      <img src="assets/images/product/front/22_3.jpg" class="w-100" alt="" />
+                    </figure>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="d-flex flex-column align-items-center justify-content-center">
-        <h1>{{ product.name }}</h1>
-        <h2>
-          <a href="{{ product.category.get_absolute_url }}">
-            {{ product.category }}
-          </a>
-        </h2>
-        <p class="price">${{ product.price }}</p>
-        {{ product.description|linebreaks }}
-      </div>
-      
+      <div class="col-lg-6">
+        <div class="product-right-detail">
+          <h2>White Crochet Crop Top</h2>
+          <div class="product-price-box border-line">
+            <h5>$50.00 <del>$75.00</del> <span>(8% off)</span></h5>
+            <div class="product-reting">
+              <ul>
+                <li><i class="ri-star-fill"></i></li>
+                <li><i class="ri-star-fill"></i></li>
+                <li><i class="ri-star-fill"></i></li>
+                <li><i class="ri-star-fill"></i></li>
+                <li><i class="ri-star-line"></i></li>
+              </ul>
+              <h6>25 Review</h6>
+            </div>
+          </div>
+          <div class="product-content border-line">
+            <p>
+              Elevate your summer style with our white crochet crop top.
+              This lightweight and breathable piece features intricate
+              patterns, making it perfect for layering over your favorite
+              bralette or pairing with high-waisted bottoms for a trendy
+              look.
+            </p>
+            <ul class="product-list">
+              <li>vendor: donatello</li>
+              <li>sKU: W303C81</li>
+              <li>availability: in stock</li>
+            </ul>
+          </div>
 
+          <p class="product-view border-line">
+            <i class="ri-eye-line"></i> 15 people are viewing this right now
+          </p>
+
+          <div class="product-Variant-box">
+            <div class="product-size">
+              <h5 class="product-sub-title">Size : <span>M</span></h5>
+              <ul class="size">
+                <li class="active"><a href="#!">S</a></li>
+                <li class="disable"><a href="#!">M</a></li>
+                <li><a href="#!">L</a></li>
+                <li><a href="#!">XL</a></li>
+              </ul>
+            </div>
+
+            <div class="product-color-box">
+              <h5 class="product-sub-title">Color</h5>
+              <ul class="color-radio">
+                <li>
+                  <input type="radio" class="radio-1" checked name="r1" />
+                </li>
+                <li>
+                  <input type="radio" class="radio-1 radio-2" name="r1" />
+                </li>
+                <li>
+                  <input type="radio" class="radio-1 radio-3" name="r1" />
+                </li>
+                <li>
+                  <input type="radio" class="radio-1 radio-4" name="r1" />
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="counter-btn">
+            <div class="counter">
+              <span class="down" onClick="decreaseCount(event, this)"><i class="ri-subtract-line"></i></span>
+              <input type="text" value="1" />
+              <span class="up" onClick="increaseCount(event, this)"><i class="ri-add-line"></i></span>
+            </div>
+            <div class="product-btn">
+              <a href="cart.html" class="btn outline-btn">
+                <i class="ri-shopping-cart-2-line"></i>
+                Add to Cart</a>
+              <a href="check-out.html" class="btn solid-btn">
+                <div class="button-text">
+                  <span>Buy now</span>
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <div class="add-box">
+            <a href="wishlist.html" class="like-btn animate inactive p-0">
+              <i class="ri-heart-3-fill fill-icon"></i>
+              <i class="ri-heart-3-line outline-icon"></i>
+              Add To Wishlist
+            </a>
+            <a href="#!" class="compare-btn"><i class="ri-loop-right-fill"></i>Add To Compare</a>
+          </div>
+
+          <div class="progress-bar-line">
+            <h6>Please hurry! Only 5 left in stock</h6>
+            <div class="progress" role="progressbar" aria-label="Animated striped example" aria-valuenow="55"
+              aria-valuemin="0" aria-valuemax="100">
+              <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: 55%; height: 10px">
+              </div>
+            </div>
+          </div>
+
+          <div class="delivery-box border-line">
+            <a href="#!" class="size-btn" data-bs-toggle="modal" data-bs-target="#deliVery">
+              <i class="ri-truck-line"></i> Delivery and Return
+            </a>
+            <a href="#!" class="size-btn" data-bs-toggle="modal" data-bs-target="#size">
+              <i class="ri-ruler-line"></i> Find your size
+            </a>
+            <a href="#!" class="size-btn" data-bs-toggle="modal" data-bs-target="#question">
+              <i class="ri-questionnaire-line"></i> Ask a question
+            </a>
+          </div>
+
+          <div class="payment-box border-line">
+            <h5 class="product-sub-title">Guaranteed safe checkout</h5>
+            <img src="assets/images/payment/payments.png" class="img-fluid" alt="" />
+          </div>
+
+          <div class="share-info">
+            <h5>Share it:</h5>
+            <ul>
+              <li>
+                <a href="https://www.facebook.com/"><i class="ri-facebook-fill"></i></a>
+              </li>
+              <li>
+                <a href="https://www.google.com/"><i class="ri-google-fill"></i></a>
+              </li>
+              <li>
+                <a href="https://x.com/login?mx=2"><i class="ri-twitter-fill"></i></a>
+              </li>
+              <li>
+                <a href="https://www.instagram.com/"><i class="ri-instagram-line"></i></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
+</section>
+<!-- product-section-end -->
+
 {% endblock %}

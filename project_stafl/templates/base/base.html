@@ -29,6 +29,10 @@
 
   <!-- ========== style css ========== -->
   <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+  <!-- ========== htmx ========== -->
+  <script src="https://unpkg.com/htmx.org@2.0.4"
+    integrity="sha384-HGfztofotfshcF7+8n44JQL2oJmowVChPTg48S+jvZoztPfvwD79OC/LTtG6dMp+"
+    crossorigin="anonymous"></script>
 </head>
 
 <body class="montserrat-font">
@@ -45,7 +49,7 @@
               <span><i class="ri-align-left text-dark"></i></span>
             </button>
             <a href="{% url 'home' %}" class="main-logo">
-              <img src="{% static 'images/logo/logo.svg' %}" class="light-logo" alt="" />
+              <img src="{% static 'images/logo/logo-stafl.jpg' %}" class="light-logo" alt="" />
               <img src="{% static 'images/logo/logo-white.svg' %}" class="dark-logo" alt="" />
             </a>
           </div>
