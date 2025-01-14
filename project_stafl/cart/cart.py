@@ -103,4 +103,12 @@ class Cart:
 
 
 
+    def __contains__(self, product):
+        """
+        Check if the cart contains a product.
+        """
+        return str(product.id) in self.cart
+
+
+
 
