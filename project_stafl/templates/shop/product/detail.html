@@ -120,7 +120,10 @@
               <span class="up" onClick="increaseCount(event, this)"><i class="ri-add-line"></i></span>
             </div>
             <div class="product-btn">
-              <a href="cart.html" class="btn outline-btn">
+              {% if product.id %}
+              <a href="{% url 'cart:cart_add' product.id %}" class="btn outline-btn">
+
+                {% endif %}
                 <i class="ri-shopping-cart-2-line"></i>
                 Add to Cart</a>
               <a href="check-out.html" class="btn solid-btn">

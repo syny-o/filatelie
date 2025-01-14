@@ -1,0 +1,44 @@
+{% for item in cart %}
+{% with product=item.product %}
+
+
+<tr>
+    <td>
+        <div class="product-cart-box">
+            <a href="#!" class="product-cart-img">
+                <img src="{{ product.image.url }}" class="img-fluid" alt="" />
+            </a>
+            <div class="product-cart-detail">
+                <h5 class="product-cart-name">
+                    {{ product.name }}
+                </h5>
+                <p>
+                    {{ product.description }}
+                </p>
+            </div>
+        </div>
+    </td>
+    <td class="cart-attribute">
+        <p>{{ product.category }}</p>
+
+    </td>
+    <td>
+        <div class="counter cart-counter">
+            <span class="down" onClick="decreaseCount(event, this)">
+                <i class="ri-subtract-line"></i></span>
+            <input type="text" value="{{ item.quantity }}" />
+            <span class="up" onClick="increaseCount(event, this)">
+                <i class="ri-add-line"></i></span>
+        </div>
+    </td>
+    <td class="product-cart-price">{{ product.price }}</td>
+    <td>
+        <div class="deleteButton">
+            <a href="{% url 'cart:cart_remove' product.id %}"><i class="ri-delete-bin-line"></i></a>
+        </div>
+    </td>
+</tr>
+
+{% endwith %}
+
+{% endfor %}

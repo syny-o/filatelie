@@ -1,0 +1,187 @@
+{% extends '../base/base.html' %}
+
+{% block content %}
+
+<!-- ========== Start cart Section ========== -->
+<section class="cart-section section-b-space">
+    <div class="custom-container">
+        <div class="row g-5 section-sm-t-space">
+            <div class="col-xxl-8 col-12">
+                <div class="table-responsive table-sticky">
+                    <table class="table cart-table">
+                        <thead>
+                            <tr>
+                                <th>položka</th>
+                                <th>kategorie</th>
+                                <th>množství</th>
+                                <th>cena</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% include './products.html' %}
+
+                        </tbody>
+                    </table>
+                </div>
+                <div class="add-note-box section-sm-t-space">
+                    <h5 class="mb-sm-3 mb-2">
+                        Dodatečné informace k objednávce:
+                    </h5>
+                    <textarea class="form-control contact-input" placeholder="Co bychom ještě měli vědět"
+                        id="floatingTextarea2" style="height: 150px"></textarea>
+                </div>
+            </div>
+            <div class="col-xxl-4 col-12">
+                <div class="summery-box">
+                    <h5 class="summery-title">Souhrn</h5>
+                    <div class="cart-progress">
+                        <div class="progress" style="height: 10px">
+                            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
+                                style="width: 83%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
+                                <span><i class="ri-truck-line"></i></span>
+                            </div>
+                        </div>
+                        <p>
+                            Almost there, add <span>$267.00 </span>more to get
+                            <span>FREE Shipping !!</span>
+                        </p>
+                    </div>
+                    <div class="summery-details-box">
+                        <h6 class="coupon-title">Slevový kód</h6>
+                        <div class="input-group coming-input-group summery-input">
+                            <input type="text" class="form-control cart-input" placeholder="Zadejte slevový kód"
+                                aria-label="Recipient's username" aria-describedby="button-addon2" />
+                            <button class="coming-btn" type="button" id="button-addon2">
+                                Aktivovat
+                            </button>
+                        </div>
+                        <p class="coupon-note">
+                            * Slevový kód bude uplatněn na další stránce
+                        </p>
+                        <ul class="payment-details">
+                            <!-- <li>
+                                <p>Subtotal:</p>
+                                <span>$300.00</span>
+                            </li> -->
+                            <!-- <li>
+                                <p>Estimated shipping:</p>
+                                <span>$15.00</span>
+                            </li> -->
+                            <!-- <li>
+                                <p>discount:</p>
+                                <span>-$0.00</span>
+                            </li> -->
+                            <li>
+                                <p>Celkem:</p>
+                                <span class="main-totle">{{ cart.get_total_price }} Kč</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="edit-terms-btn">
+                        <div class="form-check terms-btn mb-0">
+                            <input class="form-check-input terms-radio edit-radio" type="checkbox" value=""
+                                id="flexCheckDefault" />
+                            <label class="form-check-label terms-label contact-label" for="flexCheckDefault">
+                                Souhlasím
+                                <a href="#!" class="summery-label" data-bs-toggle="modal" data-bs-target="#term">
+                                    Terms and Conditions
+                                </a>
+                            </label>
+                        </div>
+                        <div class="payment-option">
+                            <a href="check-out.html" class="btn solid-btn">
+                                <i class="ri-lock-fill"></i>
+                                <div class="button-text">
+                                    <span>Závazně objednat</span>
+                                </div>
+                            </a>
+                            <a href="{% url 'shop:product_list' %}" class="btn solid-btn">
+                                <div class="button-text">
+                                    <span>Pokračovat v nákupu</span>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- ========== End cart Section ========== -->
+
+
+
+
+
+
+
+
+
+
+<!-- Terms and condition Modal start -->
+<div class="modal lg-modal fade" id="term" tabindex="-1">
+    <div class="modal-dialog delivery-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="product-sub-title">Terms and Conditions of edgy</h5>
+                <button type="button" class="modal-close" data-bs-dismiss="modal" aria-label="Close">
+                    <i class="ri-close-fill"></i>
+                </button>
+            </div>
+            <div class="modal-body lg-body">
+                <h5>1. Acceptance of Terms</h5>
+                <ul>
+                    <li>
+                        By accessing or using the services provided by edgy, you agree
+                        to be bound by these terms and conditions. If you do not agree
+                        to all the terms and conditions, you may not access the
+                        services.
+                    </li>
+                </ul>
+                <h5 class="terms">2. Orders and Payments</h5>
+                <ul>
+                    <li>
+                        All orders placed through our website are subject to
+                        availability and acceptance.
+                    </li>
+                    <li>
+                        Prices are as displayed on the website and are subject to change
+                        without notice.
+                    </li>
+                    <li>
+                        Payment must be made in full at the time of placing an order.
+                    </li>
+                </ul>
+                <h5 class="terms">3. Privacy Policy</h5>
+                <ul>
+                    <li>
+                        We respect your privacy and handle your personal information in
+                        accordance with our Privacy Policy.
+                    </li>
+                </ul>
+                <h5 class="terms">4. Changes to Terms</h5>
+                <ul>
+                    <li>
+                        edgy reserves the right to modify these terms and conditions at
+                        any time without prior notice. The updated terms will be
+                        effective upon posting on the website.
+                    </li>
+                </ul>
+                <p class="bold-line">
+                    By using our services, you agree to review these terms regularly
+                    and be aware of any changes.
+                </p>
+                <p>
+                    <span>note : </span> If you have any questions or concerns about
+                    these terms and conditions, please contact us at
+                    <a href="mailto:orders@edgystore.com">orders@edgystore.com</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Terms and condition modal end -->
+
+
+{% endblock %}

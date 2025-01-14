@@ -23,6 +23,7 @@ urlpatterns = [
     path('', include('core.urls')),
     path('account/', include('account.urls')),
     path('shop/', include('shop.urls')),
+    path('cart/', include('cart.urls')),
 ]
 
 # MEdia files
