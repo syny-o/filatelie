@@ -24,6 +24,7 @@ urlpatterns = [
     path('account/', include('account.urls')),
     path('shop/', include('shop.urls')),
     path('cart/', include('cart.urls')),
+    path('orders/', include('orders.urls')),
 ]
 
 # MEdia files

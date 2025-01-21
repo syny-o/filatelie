@@ -1,0 +1,92 @@
+{% extends '../base/base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+
+<!-- ========== Start checkout Section ========== -->
+<section class="checkout-section section-t-space section-b-space">
+    <div class="custom-container">
+        <form action="" method="POST">
+            <div class="row g-5">
+                <div class="col-xxl-8 col-12">
+
+                    {{ form.as_p }}
+                    {% csrf_token %}
+
+
+
+
+
+                </div>
+
+                <!-- ORDER SUMMARY START -->
+                <div class="col-xxl-4 col-12">
+                    <div class="order-summary">
+                        <h5 class="order-title">Shrnutí objednávky</h5>
+
+                        {% for item in cart %}
+                        <!-- Products start -->
+                        <div class="order-box">
+                            <a href="shop-left-sidebar.html" class="order-img">
+                                <img src="{{ item.product.image.url }}" class="img-fluid" alt="" />
+                            </a>
+                            <div class="order-detail-box">
+                                <div class="order-detail">
+                                    <div>
+                                        <a href="shop-left-sidebar.html">{{ item.product.name }}</a>
+                                        <h6>Kategorie: <span>{{ item.product.category }}</span></h6>
+                                        <h6 class="mt-2">Počet : <span>{{ item.quantity }}</span></h6>
+                                    </div>
+                                    <h6 class="order-price">{{ item.total_price }} Kč</h6>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Products end -->
+                        {% endfor %}
+
+                        <!-- <div class="input-group coming-input-group summery-input mt-4">
+                        <input type="text" class="form-control cart-input" placeholder="Enter coupon code here"
+                            aria-label="Recipient's username" />
+                        <button class="coming-btn" id="button-addon3">Apply</button>
+                    </div> -->
+                        <ul class="order-total-box">
+                            <!-- <li class="coupon-box">
+                            <h5 class="coupon-total-title">
+                                <img src="assets/images/svg/coupon.svg" class="img-fluid" alt="" />
+                                Bguhj2165
+                            </h5>
+                            <a href="#!" class="size-btn remove-coupon" data-bs-toggle="modal"
+                                data-bs-target="#coupon">-$25.00 [Remove]
+                            </a>
+                        </li> -->
+                            <li class="order-total">
+                                <h5 class="order-total-title">Doprava</h5>
+                                <h6 class="order-total-price">Zdarma</h6>
+                            </li>
+                            <!-- <li class="order-total">
+                            <h5 class="order-total-title">Subtotal</h5>
+                            <h6 class="order-total-price">$99.00</h6>
+                        </li> -->
+                            <li class="order-total">
+                                <h5 class="order-total-title main-total-title">Celkem</h5>
+                                <h6 class="order-total-price main-total">{{ cart.get_total_price }} Kč</h6>
+                            </li>
+                        </ul>
+                        <button type="submit" class="btn solid-btn w-100 mt-lg-4 mt-3">
+                            <div class="button-text">
+                                <span>Objednat</span>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+                <!-- ORDER SUMMARY END -->
+            </div>
+        </form>
+    </div>
+</section>
+<!-- ========== End checkout Section ========== -->
+
+
+{% endblock %}

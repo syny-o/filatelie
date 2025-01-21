@@ -31,7 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'account', # login/logout/register/reset password
+    'account', # login/logout/register/reset password/dasboard
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'core', # main site
     'shop', # products site
     'cart', # shopping cart
+    'orders', # customer orders
 ]
 
 MIDDLEWARE = [
