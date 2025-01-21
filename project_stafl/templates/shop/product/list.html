@@ -19,9 +19,9 @@
         <div class="right-product-box">
           <div class="grid-filter-box">
 
-            <h4>{{ products|length }} product found</h4>
+            <h5>Celkem: {{ products|length }}</h5>
             <div class="right-side-filter">
-              <span class="sort-by-title">Sort By:</span>
+              <span class="sort-by-title">Seřadit:</span>
               <div class="dropdown featured-menu right-featured-menu">
 
                 <form id="ordering-form" action="{% url 'shop:product_list' %}">
