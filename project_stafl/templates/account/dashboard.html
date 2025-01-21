@@ -172,6 +172,10 @@
                     <div class="tab-pane order-tab fade" id="nav-order" role="tabpanel" aria-labelledby="nav-order-tab">
                         <h5 class="dashboard-tab-title">My orders History</h5>
                         <div class="order-contian">
+                            <!-- One Order -->
+                            {% with orders=usr.profile.orders.all %}
+                            {% for order in orders %}
+                            {{ order.email }}
                             <div class="order-list-box">
                                 <div class="order-container">
                                     <div class="order-icon">
@@ -185,20 +189,24 @@
                                         </p>
                                     </div>
                                 </div>
+
+
+
+
                                 <div class="product-order-detail-box">
+                                    {% for item in order.items.all %}
                                     <div class="product-order-img">
-                                        <img src="assets/images/product/front/11.jpg" class="img-fluid" alt="" />
+                                        <img src="{{ item.product.image.url }}" class="img-fluid" alt="" />
                                     </div>
                                     <div class="order-wrap-box">
-                                        <a href="shop-left-sidebar.html">Ribbed Dress</a>
+                                        <a href="shop-left-sidebar.html">{{ item.product.name }}</a>
                                         <p>
-                                            Versatile sporty slogans short sleeve quirky laid back
-                                            orange lux hoodies vests pins badges.
+                                            {{ item.product.description }}
                                         </p>
                                         <ul class="order-product-size">
                                             <li class="size-box">
                                                 <h6>price :</h6>
-                                                <h5>$20.00</h5>
+                                                <h5>{{ item.price }}</h5>
                                             </li>
                                             <li class="size-box">
                                                 <h6>rate :</h6>
@@ -222,8 +230,14 @@
                                             </li>
                                         </ul>
                                     </div>
+                                    {% endfor %}
                                 </div>
+
+
                             </div>
+                            {% endfor %}
+
+                            {% endwith %}
 
                         </div>
                     </div>

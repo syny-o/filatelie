@@ -1,5 +1,7 @@
 from django.db import models
 
+from account.models import Profile
+
 
 class Order(models.Model):
     first_name = models.CharField(max_length=50)
@@ -11,6 +13,10 @@ class Order(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     paid = models.BooleanField(default=False)
+
+
+    # FOREIGN KEY 2 USER PROFILE
+    fk_profile = models.ForeignKey(Profile, on_delete=models.CASCADE, blank=True, null=True, related_name="orders", editable=False)
 
     
     class Meta:

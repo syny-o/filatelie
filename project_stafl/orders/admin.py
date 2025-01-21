@@ -16,13 +16,24 @@ class OrderAdmin(admin.ModelAdmin):
         'first_name',
         'last_name',
         'email',
-        'address',
-        'postal_code',
-        'city',
         'paid',
         'created',
-        'updated'
+        'updated',
+        'fk_profile'
     ]
 
-    list_filter = ['paid', 'created', 'updated']
+    # list_filter = ['paid', 'created', 'updated']
     inlines = [OrderItemInline]
+
+    # Customize the detail (form) view
+    fieldsets = (
+        ('Profil', {
+            'fields': ('fk_profile',)  # Add fields here for the detail view
+        }),
+        # You can add more sections if needed
+        ('Objednavka', {
+            # 'classes': ('collapse',),
+            'fields': ('first_name', 'last_name', 'email', 'address', 'city', 'postal_code' ,'paid')
+        }),
+    ) 
+    readonly_fields = ('fk_profile',)  # Make fk_profile non-editable   

@@ -35,6 +35,11 @@ def summary(request):
         
         if form.is_valid():
             order = form.save()
+            
+            if request.user.is_authenticated:
+                order.fk_profile = request.user.profile
+                order.save()
+
             # create order items from cart
             for item in cart:
                 OrderItem.objects.create(
