@@ -31,3 +31,26 @@ class Profile(models.Model):
     class Meta:
         verbose_name = 'Uživatelský profil'
         verbose_name_plural = 'Uživatelské profily'
+
+
+
+    
+
+# Address model to store one address to each user
+class Address(models.Model):
+    profile = models.OneToOneField(
+        Profile,
+        on_delete=models.CASCADE
+    )
+    street = models.CharField(blank=True, null=True, max_length=255, verbose_name='Ulice',)
+    city = models.CharField(blank=True, null=True, max_length=255, verbose_name='Město')
+    state = models.CharField(blank=True, null=True, max_length=255, verbose_name='Stát')
+    postal_code = models.CharField(blank=True, null=True, max_length=20, verbose_name='PSČ')
+    country = models.CharField(blank=True, null=True, max_length=255, verbose_name='Země')
+
+    def __str__(self):
+        return f'Address of {self.profile.user.username}'
+
+    class Meta:
+        verbose_name = 'Adresa'
+        verbose_name_plural = 'Adresy'

@@ -31,12 +31,12 @@
                         <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab"
                             data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home"
                             aria-selected="true">
-                            <i class="ri-home-4-line"></i> DashBoard
+                            <i class="ri-home-4-line"></i> Obecné
                         </button>
 
                         <button class="nav-link" id="nav-order-tab" data-bs-toggle="tab" data-bs-target="#nav-order"
                             type="button" role="tab" aria-controls="nav-order" aria-selected="false">
-                            <i class="ri-shopping-bag-3-line"></i> Order
+                            <i class="ri-shopping-bag-3-line"></i> Objednávky
                         </button>
 
                         <button class="nav-link" id="nav-wishlist-tab" data-bs-toggle="tab"
@@ -45,16 +45,10 @@
                             <i class="ri-heart-3-line"></i> Wishlist
                         </button>
 
-
-
-                        <button class="nav-link" id="nav-Address-tab" data-bs-toggle="tab" data-bs-target="#nav-Address"
-                            type="button" role="tab" aria-controls="nav-Address" aria-selected="false">
-                            <i class="ri-map-pin-line"></i> Address
-                        </button>
-
-                        <button class="nav-link" id="nav-Profile-tab" data-bs-toggle="tab" data-bs-target="#nav-Profile"
-                            type="button" role="tab" aria-controls="nav-Profile" aria-selected="false">
-                            <i class="ri-user-3-line"></i> Profile
+                        <button class="nav-link text-danger" id="nav-Profile-tab" data-bs-toggle="tab"
+                            data-bs-target="#nav-Profile" type="button" role="tab" aria-controls="nav-Profile"
+                            aria-selected="false">
+                            <i class="ri-user-3-line"></i> Upravit
                         </button>
 
                         <div class="logout-box">
@@ -291,201 +285,137 @@
                         </div>
                     </div>
 
-                    <div class="tab-pane address-tab fade" id="nav-Address" role="tabpanel"
-                        aria-labelledby="nav-Address-tab">
-                        <h5 class="dashboard-tab-title">My Address Book</h5>
-                        <div class="row g-4">
-                            <div class="col-md-6 col-12">
-                                <div class="address-main-box">
-                                    <div class="address-check-box">
-                                        <input type="radio" class="pay-radio" name="card" id="address1" />
-                                        <label for="address1" class="user-detail">
-                                            <span class="user-name-box">
-                                                <span class="user-name"> Henry Theodore</span>
-                                                <span class="address-label">Home</span>
-                                            </span>
-                                            <span class="user-address">
-                                                <span class="address-sub-box">
-                                                    <span class="address-sub-title">Address :</span>
-                                                    <span class="address-sub-content">8424 James Lane South San
-                                                        Francisco, CA
-                                                        94080</span>
-                                                </span>
-                                                <span class="address-sub-box">
-                                                    <span class="address-sub-title">Pin Code :</span>
-                                                    <span class="address-sub-content">+380</span>
-                                                </span>
-                                                <span class="address-sub-box">
-                                                    <span class="address-sub-title">Phone :</span>
-                                                    <span class="address-sub-content">+ 812-710-3798</span>
-                                                </span>
-                                            </span>
-                                        </label>
-                                    </div>
-                                    <div class="address-edit-box">
-                                        <a href="#!" class="btn outline-btn" data-bs-toggle="modal"
-                                            data-bs-target="#deliVery">
-                                            Edit
-                                        </a>
-                                        <a data-bs-toggle="modal" class="btn solid-btn" href="#exampleModalToggle"
-                                            role="button"><i class="ri-delete-bin-5-line"></i>
-                                            <div class="button-text">
-                                                <span>Remove</span>
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
 
-                        </div>
-                    </div>
                     <div class="tab-pane profile-tab fade" id="nav-Profile" role="tabpanel"
                         aria-labelledby="nav-Profile-tab">
-                        <h5 class="dashboard-tab-title">My Profile</h5>
+                        <h5 class="dashboard-tab-title">Upravit</h5>
 
-                        <div class="profile-name-box">
-                            <h5 class="profile-name-title">profile picture</h5>
-                            <p class="profile-note">
-                                To make your profile stand out and make it easier for others
-                                to notice your contributions and comments, upload an image!
-                            </p>
-                            <div class="upload-profile">
-                                <div class="avatar-upload profile-upload">
-                                    <div class="avatar-edit">
-                                        <input type="file" id="imageUpload" accept=".png, .jpg, .jpeg" />
-                                        <label for="imageUpload">
-                                            <i class="ri-folder-image-line"></i>
-                                        </label>
-                                    </div>
-                                    <div class="avatar-preview">
-                                        <div id="imagePreview" style="
-                          background-image: url('assets/images/others/user.jpg');
-                        "></div>
-                                    </div>
-                                </div>
-                                <div class="user-profile-box">
-                                    <div class="name-box">
-                                        <h5>Nick jez Pope</h5>
-                                        <ul class="profile-rating">
-                                            <li><i class="ri-star-fill"></i></li>
-                                            <li><i class="ri-star-fill"></i></li>
-                                            <li><i class="ri-star-fill"></i></li>
-                                            <li><i class="ri-star-fill"></i></li>
-                                            <li><i class="ri-star-line"></i></li>
-                                        </ul>
+
+
+
+
+
+                        <form method="POST" action="{% url 'account:dashboard'%}" enctype="multipart/form-data">
+                            {% csrf_token %}
+
+
+                            <!-- USER FORM -->
+                            <div class="profile-about-box">
+                                <h5 class="profile-about-title">Login</h5>
+                                <p class="profile-sub-line">
+                                    Zde můžete změnit informace ohledně uživatelského jména a emailu.
+                                </p>
+                                <div class="mt-4">
+                                    <div class="row">
+                                        <div class="col-md-6 col-12">
+                                            <div class="mb-3">
+                                                <label for="full-nameOne" class="form-label">Uživatelské jméno*</label>
+                                                {{ user_form.username }}
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-12">
+                                            <div class="mb-3">
+                                                <label for="full-nameOne" class="form-label">Email*</label>
+                                                {{ user_form.email }}
+                                            </div>
+                                        </div>
                                     </div>
 
-                                    <ul class="location-profile">
-                                        <li>
-                                            <i class="ri-map-pin-line"></i> Downers Grove, IL
-                                        </li>
-                                        <li>
-                                            <i class="ri-mail-line"></i>
-                                            <a href="mailto:orders@edgystore.com">
-                                                nick.jezpope3@email.com</a>
-                                        </li>
-                                        <li>
-                                            <i class="ri-checkbox-line"></i> Licensed for 2 years
-                                        </li>
-                                    </ul>
                                 </div>
                             </div>
-                            <p class="profile-description">
-                                Residences can be classified by and how they are connected
-                                to neighbouring residences and land. Different types of
-                                housing tenure can be used for the same physical type.
-                            </p>
-                        </div>
 
-                        <div class="profile-about-box">
-                            <h5 class="profile-about-title">Account Details</h5>
-                            <p class="profile-sub-line">
-                                You can change your address and personal details.
-                            </p>
+                            <!-- PROFILE FORM -->
+                            <div class="profile-about-box">
+                                <h5 class="profile-about-title">Profil</h5>
+                                <p class="profile-sub-line">
+                                    Zde můžete změnit informace ohledně profilového obrázku a data narození.
+                                </p>
+                                <div class="mt-4">
+                                    <div class="row">
+                                        <div class="col-md-6 col-12">
+                                            <div class="mb-3">
+                                                <label for="full-nameOne" class="form-label">Profilová fotka*</label>
+                                                {{ profile_form.photo }}
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-12">
+                                            <div class="mb-3">
+                                                <label for="full-nameOne" class="form-label">Datum narození*</label>
+                                                {{ profile_form.date_of_birth }}
+                                            </div>
+                                        </div>
+                                    </div>
 
-                            <form class="mt-4">
-                                <div class="row">
-                                    <div class="col-md-6 col-12">
-                                        <div class="mb-3">
-                                            <label for="full-nameOne" class="form-label">First Name</label>
-                                            <input type="text" class="form-control contact-input" id="full-nameOne"
-                                                value="Jack" />
+                                </div>
+                            </div>
+
+
+                            <!-- ADDRESS FORM -->
+                            <div class="profile-about-box">
+                                <h5 class="profile-about-title">Adresa</h5>
+                                <p class="profile-sub-line">
+                                    Zde můžete změnit informace ohledně adresy.
+                                </p>
+                                <div class="mt-4">
+                                    <div class="row">
+                                        <div class="col-md-6 col-12">
+                                            <div class="mb-3">
+                                                <label for="full-nameOne" class="form-label">Ulice*</label>
+                                                {{ address_form.street }}
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-12">
+                                            <div class="mb-3">
+                                                <label for="full-nameOne" class="form-label">Město*</label>
+                                                {{ address_form.city }}
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-6 col-12">
-                                        <div class="mb-3">
-                                            <label for="full-nameTwo" class="form-label">Last Name</label>
-                                            <input type="text" class="form-control contact-input" id="full-nameTwo"
-                                                value="Jennas" />
+                                    <div class="row">
+                                        <div class="col-md-6 col-12">
+                                            <div class="mb-3">
+                                                <label for="full-nameOne" class="form-label">PSČ*</label>
+                                                {{ address_form.postal_code }}
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-md-6 col-12">
-                                        <div class="mb-3">
-                                            <label for="emailOne" class="form-label">Email Address</label>
-                                            <input type="email" class="form-control contact-input" id="emailOne"
-                                                value="jackjennas@gmail.com" />
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 col-12">
-                                        <div class="mb-3">
-                                            <label for="PhoneOne" class="form-label">Phone Number</label>
-                                            <input type="tel" class="form-control contact-input" id="PhoneOne"
-                                                value="1234 1234 1234" />
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="mb-3">
-                                            <label for="AddressOne" class="form-label">Add Address</label>
-                                            <input type="text" class="form-control contact-input" id="AddressOne"
-                                                value="8424 James Lane South San Francisco" />
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4 col-12 mb-sm-3 mb-2">
-                                        <label class="form-label">Country *</label>
-                                        <select class="form-select" aria-label="Default select example">
-                                            <option selected>Choose Your Country</option>
-                                            <option value="1">Australia</option>
-                                            <option value="2">Bahamas</option>
-                                            <option value="3">Malaysia</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-md-4 col-12 mb-sm-3 mb-2">
-                                        <label class="form-label">City *</label>
-                                        <select class="form-select" aria-label="Default select example">
-                                            <option selected>Choose Your City</option>
-                                            <option value="1">Australia</option>
-                                            <option value="2">Bahamas</option>
-                                            <option value="3">Malaysia</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-md-4 col-12">
-                                        <div class="mb-3">
-                                            <label for="CodeOne" class="form-label">Pin Code</label>
-                                            <input type="text" class="form-control contact-input" id="CodeOne"
-                                                value="123 568" />
+                                        <div class="col-md-6 col-12">
+                                            <div class="mb-3">
+                                                <label for="full-nameOne" class="form-label">Stát*</label>
+                                                {{ address_form.country }}
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="text-start mt-4">
-                                    <button type="button" class="btn solid-btn" data-bs-dismiss="modal"
-                                        aria-label="Close">
-                                        <div class="button-text">
-                                            <span>Save Change</span>
-                                        </div>
-                                    </button>
-                                    <button type="button" class="btn outline-btn ms-2" data-bs-dismiss="modal"
-                                        aria-label="Close">
-                                        Close
-                                    </button>
-                                </div>
-                            </form>
-                        </div>
+                            </div>
+
+                            <!-- SAVE BUTTON  -->
+                            <div class="text-start mt-4">
+                                <button type="submit" class="btn solid-btn" data-bs-dismiss="modal" aria-label="Close">
+                                    <div class="button-text">
+                                        <span>Aktualizovat</span>
+                                    </div>
+                                </button>
+                            </div>
+                        </form>
                     </div>
-
                 </div>
             </div>
         </div>
-    </div>
+        {% for message in messages %}
+
+        {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+        <p class="alert alert-success m-auto text-center w-50 my-5">
+            {{ message }}
+        </p>
+        {% endif %}
+
+        {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+        <p class="alert alert-danger m-auto text-center w-50 my-5">
+            {{ message }}
+        </p>
+        {% endif %}
+
+        {% endfor %}
 </section>
 <!-- ========== End checkout Section ========== -->
 {% endwith %}
