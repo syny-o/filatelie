@@ -1,6 +1,8 @@
 from django.db import models
 from django.conf import settings
 
+from shop.models import Product
+
 
 DEFAULT_PHOTO = 'img/blank-profile.png'
 
@@ -54,3 +56,26 @@ class Address(models.Model):
     class Meta:
         verbose_name = 'Adresa'
         verbose_name_plural = 'Adresy'
+
+
+
+# favorite products
+
+class FavoriteProduct(models.Model):
+    profile = models.ForeignKey(
+        Profile,
+        on_delete=models.CASCADE
+    )
+    product = models.ForeignKey(
+        Product,
+        on_delete=models.CASCADE
+    )
+
+    def __str__(self):
+        return f'{self.profile.user.username} - {self.product.name}'
+
+    class Meta:
+        verbose_name = 'Oblíbený produkt'
+        verbose_name_plural = 'Oblíbené produkty'
+
+        

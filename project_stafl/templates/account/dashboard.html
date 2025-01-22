@@ -242,10 +242,14 @@
                         </div>
                     </div>
                     <div class="tab-pane fade" id="nav-wishlist" role="tabpanel" aria-labelledby="nav-wishlist-tab">
-                        <h5 class="dashboard-tab-title">My Wishlist History</h5>
+                        <h5 class="dashboard-tab-title">Oblíbené produkty</h5>
                         <div
                             class="row g-sm-4 g-3 ratio_product_2 row-cols-xxl-4 row-cols-lg-4 row-cols-sm-3 row-cols-2">
+                            {% for product in favorite_products %}
                             <div class="col">
+
+
+
                                 <div class="product-box">
                                     <div class="product-img-box">
                                         <div class="label-box">
@@ -261,7 +265,7 @@
                                         </div>
                                         <div class="front">
                                             <a href="shop-left-sidebar.html">
-                                                <img src="assets/images/product/front/18.jpg" class="bg-img w-100"
+                                                <img src="{{ product.product.image.url }}" class="bg-img w-100"
                                                     alt="" />
                                             </a>
                                         </div>
@@ -295,6 +299,7 @@
                                     </div>
                                 </div>
                             </div>
+                            {% endfor %}
 
                         </div>
                     </div>

@@ -2,6 +2,8 @@ from django.shortcuts import get_object_or_404, render
 
 from .models import Category, Product
 
+from account.models import FavoriteProduct
+
 
 def product_list(request, category_slug=None):
     category = None
@@ -18,7 +20,11 @@ def product_list(request, category_slug=None):
     if ordering_criteria:
         products = products.order_by(ordering_criteria)
 
-    print(products)
+    # Favorite products
+    favorite_products = FavoriteProduct.objects.filter(profile=request.user.profile)
+    favorite_products = [item.product for item in favorite_products]
+
+    # print(products)
         
     
     # if category_slug:
@@ -27,7 +33,7 @@ def product_list(request, category_slug=None):
     #     products = products.filter(category=category)
 
         
-    print(ordering_criteria)
+    # print(ordering_criteria)
         
     return render(
         request,
@@ -37,6 +43,7 @@ def product_list(request, category_slug=None):
             'ordering_criteria': ordering_criteria,
             'all_categories': categories,
             'products': products,
+            'favorite_products': favorite_products,
 
         }
     )
@@ -47,8 +54,11 @@ def product_list(request, category_slug=None):
 def product_detail(request, id, slug):
     
     product = get_object_or_404(Product, id=id, slug=slug, available=True)
+
+    favorite_products = FavoriteProduct.objects.filter(profile=request.user.profile)
+    favorite_products = [item.product for item in favorite_products]
     
     return render(
-            request,'shop/product/detail.html', {'product': product}
+            request,'shop/product/detail.html', {'product': product, 'favorite_products' : favorite_products}
         )
 

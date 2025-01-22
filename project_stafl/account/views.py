@@ -1,11 +1,14 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.urls import reverse
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 
 from django.contrib import messages
 
 from .forms import UserRegistrationForm, ProfileForm, UserEditForm, AddressForm
-from .models import Profile, Address
+from .models import Profile, Address, FavoriteProduct
+
+from shop.models import Product
 
 
 
@@ -20,11 +23,15 @@ def dashboard(request):
         profile_form = ProfileForm(instance=request.user.profile)
         
         address_form = AddressForm(instance=address)
+
+        favorite_products = FavoriteProduct.objects.filter(profile=profile)
     
         context = {
             'user_form': user_form,
             'profile_form': profile_form,
             'address_form': address_form,
+
+            'favorite_products': favorite_products,
 
             }
         
@@ -119,5 +126,32 @@ def edit(request):
     }
 
     return render(request, 'account/dashboard.html', context)
+
+
+
+def add_to_favorite_products(request, product_id):
+
+    product = Product.objects.get(id=product_id)
+
+    profile = Profile.objects.get(user=request.user)
+
+
+    FavoriteProduct.objects.create(product=product, profile=profile)
+
+    return redirect('shop:product_detail', product.id, product.slug)
+
+
+def remove_from_favorite_products(request, product_id):
+
+    product = Product.objects.get(id=product_id)
+
+    profile = Profile.objects.get(user=request.user)
+
+
+    product_to_delete = FavoriteProduct.objects.get(product=product, profile=profile)
+    product_to_delete.delete()
+
+
+    return redirect('shop:product_detail', product.id, product.slug)
     
         

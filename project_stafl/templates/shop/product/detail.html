@@ -139,12 +139,23 @@
           </div>
 
           <div class="add-box">
-            <a href="wishlist.html" class="like-btn animate inactive p-0">
+            {% if product in favorite_products %}
+
+            <a href="{% url 'account:remove_from_favorite_products' product.id %}" class="like-btn animate active p-0">
               <i class="ri-heart-3-fill fill-icon"></i>
+              <i class="ri-heart-3-line outline-icon"></i>
+              Remove From Wishlist
+            </a>
+
+            {% else %}
+            <a href="{% url 'account:add_to_favorite_products' product.id %}" class="like-btn animate inactive p-0">
+              <!-- <i class="ri-heart-3-fill fill-icon"></i> -->
               <i class="ri-heart-3-line outline-icon"></i>
               Add To Wishlist
             </a>
-            <a href="#!" class="compare-btn"><i class="ri-loop-right-fill"></i>Add To Compare</a>
+
+            {% endif %}
+            <!-- <a href="#!" class="compare-btn"><i class="ri-loop-right-fill"></i>Add To Compare</a> -->
           </div>
 
           <div class="progress-bar-line">

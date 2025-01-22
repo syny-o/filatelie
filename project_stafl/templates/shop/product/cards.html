@@ -4,13 +4,22 @@
         <div class="product-img-box">
             <div class="label-box">
                 <div class="product-option">
-                    <a href="#!" class="like-btn wishlist-btn p-0 animate inactive">
+                    {% if product in favorite_products %}
+                    <a href="{% url 'account:remove_from_favorite_products' product.id %}"
+                        class="like-btn wishlist-btn p-0 animate active">
                         <i class="ri-heart-3-fill fill-icon fill-two"></i>
                         <i class="ri-heart-3-line outline-icon like-two"></i>
                     </a>
-                    <a href="#!" class="sub-link mt-0" data-bs-toggle="modal" data-bs-target="#view"><i
+                    {% else %}
+                    <a href="{% url 'account:add_to_favorite_products' product.id %}"
+                        class="like-btn wishlist-btn p-0 animate inactive">
+                        <i class="ri-heart-3-fill fill-icon fill-two"></i>
+                        <i class="ri-heart-3-line outline-icon like-two"></i>
+                    </a>
+                    {% endif %}
+                    <!-- <a href="#!" class="sub-link mt-0" data-bs-toggle="modal" data-bs-target="#view"><i
                             class="ri-eye-line"></i></a>
-                    <a href="#!"><i class="ri-loop-right-fill"></i></a>
+                    <a href="#!"><i class="ri-loop-right-fill"></i></a> -->
                 </div>
             </div>
             <div class="front">
@@ -33,7 +42,8 @@
         </div>
         <div class="product-detail">
             <div class="product-name-box">
-                <a href="{% url 'shop:product_detail' product.id product.slug %}" class="product-name">{{product.name}}</a>
+                <a href="{% url 'shop:product_detail' product.id product.slug %}"
+                    class="product-name">{{product.name}}</a>
 
             </div>
             <p class="list-detail">
