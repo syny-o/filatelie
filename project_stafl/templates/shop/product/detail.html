@@ -120,21 +120,15 @@
               <span class="up" onClick="increaseCount(event, this)"><i class="ri-add-line"></i></span>
             </div>
             <div class="product-btn">
-              {% if product in cart %}
-              <a href="{% url 'cart:cart_remove' product.id %}" class="btn outline-btn"> <i
-                  class="ri-shopping-cart-2-line"></i>
-                Odstranit z košíku</a>
-              {% else %}
-              <a href="{% url 'cart:cart_add' product.id %}" class="btn outline-btn"> <i
-                  class="ri-shopping-cart-2-line"></i>
-                Přidat do košíku</a>
-              {% endif %}
 
-              <a href="check-out.html" class="btn solid-btn">
+
+              {% include './btn_cart.html' %}
+
+              <!-- <a href="check-out.html" class="btn solid-btn">
                 <div class="button-text">
                   <span>Objednat</span>
                 </div>
-              </a>
+              </a> -->
             </div>
           </div>
 

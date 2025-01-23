@@ -1,0 +1,32 @@
+<div id="cart-component-products">
+    <div class="product-contain">
+        {% for item in cart %}
+        {% with product=item.product %}
+        <div class="cart-menu">
+            <a href="" class="cart-img-box">
+                <img src="{{product.image.url }}" class="cart-img img-fluid" alt="product" />
+            </a>
+            <div class="drop-cart">
+                <div>
+                    <a href="{% url 'shop:product_detail' product.id product.slug %}">
+                        <h6>{{ product.name }}</h6>
+                    </a>
+                    <p>
+                        {{ product.price }} Kč
+                    </p>
+                </div>
+                <!-- <a href="" class="close-btn">
+            <i class="ri-delete-bin-5-line"></i>
+        </a> -->
+            </div>
+        </div>
+        {% endwith %}
+        {% endfor %}
+
+    </div>
+
+    <div class="cart-price">
+        <h6>Celkem:</h6>
+        <h5>{{ cart.get_total_price }} Kč</h5>
+    </div>
+</div>

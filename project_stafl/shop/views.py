@@ -4,6 +4,8 @@ from .models import Category, Product
 
 from account.models import Profile
 
+from cart.cart import Cart
+
 
 def product_list(request, category_slug=None):
     category = None
@@ -55,11 +57,13 @@ def product_detail(request, id, slug):
     product = get_object_or_404(Product, id=id, slug=slug, available=True)
     profile = Profile.objects.get(user=request.user)
     wishlist = profile.wishlist.all()
+    cart = Cart(request)
 
     is_favorite = product in wishlist
+    is_in_cart = product in cart
     
     return render(
-            request,'shop/product/detail.html', {'product': product, 'favorite_products' : wishlist, 'is_favorite': is_favorite}
+            request,'shop/product/detail.html', {'product': product, 'favorite_products' : wishlist, 'is_favorite': is_favorite, 'is_in_cart': is_in_cart}
         )
 
 
@@ -84,8 +88,5 @@ def toggle_favorite(request, product_id):
 
 
 
-def update_cart_wishlist_count(request):
-    print("UPDATED WISHLIST CART")
-    return HttpResponse("10")
     
 

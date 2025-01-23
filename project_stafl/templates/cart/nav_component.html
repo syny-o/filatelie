@@ -1,0 +1,26 @@
+<a hx-get=" {% url 'cart:refresh_cart_content' %}" hx-target="#cart-component-products" hx-trigger="mouseenter"
+    href="{% url 'cart:cart_detail' %}" onclick="openNav()"><i class="ri-shopping-bag-2-line text-dark"></i>
+    <span id="cart-products-count" class="cart-box text-white"> {{ cart|length }} </span>
+</a>
+
+
+<div class="sub-menu cart-items" id="mySidenav">
+    <div class="cart-header">
+        <h5>Your cart</h5>
+        <button onclick="closeNav()" class="close-btn">
+            <i class="ri-close-line"></i>
+        </button>
+    </div>
+    <h5>Nákupní košík</h5>
+
+    {% include './partials/items.html' %}
+
+
+    <div class="btn-group-cart">
+        <a href="{% url 'cart:cart_detail' %}" class="btn solid-btn w-100">
+            <div class="button-text">
+                <span>Prohlédnout</span>
+            </div>
+        </a>
+    </div>
+</div>

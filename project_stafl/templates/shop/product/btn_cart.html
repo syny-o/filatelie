@@ -1,0 +1,15 @@
+<a href="" id="cart-button-{{ product.id }}" hx-get="{% url 'cart:add_remove_from_cart' product.id %}"
+    hx-target="#cart-button-{{ product.id }}" hx-swap="outerHTML"
+    class="btn {% if is_in_cart %} outline-btn {% else %} outline-btn {% endif %} ">
+    <i class="ri-shopping-cart-2-line"></i>
+
+    {% if is_in_cart %}
+    Odebrat z košíku
+    {% else %}
+    Přidat do košíku
+    {% endif %}
+</a>
+
+<div id="cart-products-count" hx-swap-oob="innerHTML" style="display: none;">
+    {{ cart|length}}
+</div>
