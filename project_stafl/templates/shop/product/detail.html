@@ -139,23 +139,17 @@
           </div>
 
           <div class="add-box">
-            {% if product in favorite_products %}
-
-            <a href="{% url 'account:remove_from_favorite_products' product.id %}" class="like-btn animate active p-0">
+            <a href="" id="favorite-button-{{ product.id }}" hx-get="{% url 'account:toggle_favorite' product.id %}"
+              hx-target="#favorite-button-{{ product.id }}" hx-swap="outerHTML"
+              class="like-btn animate {% if product in favorite_products %}active{% else %}inactive{% endif %} p-0">
               <i class="ri-heart-3-fill fill-icon"></i>
               <i class="ri-heart-3-line outline-icon"></i>
+              {% if product in favorite_products %}
               Remove From Wishlist
-            </a>
-
-            {% else %}
-            <a href="{% url 'account:add_to_favorite_products' product.id %}" class="like-btn animate inactive p-0">
-              <!-- <i class="ri-heart-3-fill fill-icon"></i> -->
-              <i class="ri-heart-3-line outline-icon"></i>
+              {% else %}
               Add To Wishlist
+              {% endif %}
             </a>
-
-            {% endif %}
-            <!-- <a href="#!" class="compare-btn"><i class="ri-loop-right-fill"></i>Add To Compare</a> -->
           </div>
 
           <div class="progress-bar-line">

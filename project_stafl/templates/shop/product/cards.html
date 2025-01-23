@@ -5,14 +5,12 @@
             <div class="label-box">
                 <div class="product-option">
                     {% if product in favorite_products %}
-                    <a href="{% url 'account:remove_from_favorite_products' product.id %}"
-                        class="like-btn wishlist-btn p-0 animate active">
+                    <a href="" class="like-btn wishlist-btn p-0 animate active">
                         <i class="ri-heart-3-fill fill-icon fill-two"></i>
                         <i class="ri-heart-3-line outline-icon like-two"></i>
                     </a>
                     {% else %}
-                    <a href="{% url 'account:add_to_favorite_products' product.id %}"
-                        class="like-btn wishlist-btn p-0 animate inactive">
+                    <a href="" class="like-btn wishlist-btn p-0 animate inactive">
                         <i class="ri-heart-3-fill fill-icon fill-two"></i>
                         <i class="ri-heart-3-line outline-icon like-two"></i>
                     </a>

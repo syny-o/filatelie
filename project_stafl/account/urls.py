@@ -18,7 +18,5 @@ urlpatterns = [
 
     path('dashboard/', views.dashboard, name='dashboard'),
     
-    
-    path('add-to-favorite-products/<int:product_id>', views.add_to_favorite_products, name='add_to_favorite_products'),
-    path('remove-from-favorite-products/<int:product_id>', views.remove_from_favorite_products, name='remove_from_favorite_products'),
+    path('toggle-favorite/<int:product_id>', views.toggle_favorite, name='toggle_favorite'),
 ]
