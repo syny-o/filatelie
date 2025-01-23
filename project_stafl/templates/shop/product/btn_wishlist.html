@@ -1,4 +1,4 @@
-<a href="" id="favorite-button-{{ product.id }}" hx-get="{% url 'account:toggle_favorite' product.id %}"
+<a href="" id="favorite-button-{{ product.id }}" hx-get="{% url 'shop:toggle_favorite' product.id %}"
     hx-target="#favorite-button-{{ product.id }}" hx-swap="outerHTML"
     class="like-btn animate {% if is_favorite %}active{% else %}inactive{% endif %} p-0">
     <i class="ri-heart-3-fill fill-icon"></i>

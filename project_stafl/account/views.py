@@ -127,30 +127,3 @@ def edit(request):
 
     return render(request, 'account/dashboard.html', context)
 
-
-
-
-def toggle_favorite(request, product_id):
-    product = Product.objects.get(id=product_id)
-    is_favorite = False
-
-    profile = Profile.objects.get(user=request.user)
-
-    # Favorite products
-    favorite_products = FavoriteProduct.objects.filter(profile=profile)
-    favorite_products = [item.product for item in favorite_products]
-
-    if product in favorite_products:
-        product_to_delete = FavoriteProduct.objects.get(product=product, profile=profile)
-        product_to_delete.delete()
-    else:
-        FavoriteProduct.objects.create(product=product, profile=profile)
-        is_favorite = True
-
-    # Return the updated button HTML
-    return HttpResponse(render(request, 'shop/product/btn_wishlist.html', {
-        'product': product,
-        'is_favorite': is_favorite,
-    }))
-    
-        

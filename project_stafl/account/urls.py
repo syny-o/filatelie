@@ -18,5 +18,4 @@ urlpatterns = [
 
     path('dashboard/', views.dashboard, name='dashboard'),
     
-    path('toggle-favorite/<int:product_id>', views.toggle_favorite, name='toggle_favorite'),
 ]
