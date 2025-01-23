@@ -21,6 +21,10 @@ class Profile(models.Model):
         verbose_name='Fotografie'
     )
 
+
+    wishlist = models.ManyToManyField(Product, verbose_name='Oblíbené produkty')
+    
+
     def __str__(self):
         return f'Profile of {self.user.username}'
     
@@ -59,23 +63,5 @@ class Address(models.Model):
 
 
 
-# favorite products
-
-class FavoriteProduct(models.Model):
-    profile = models.ForeignKey(
-        Profile,
-        on_delete=models.CASCADE
-    )
-    product = models.ForeignKey(
-        Product,
-        on_delete=models.CASCADE
-    )
-
-    def __str__(self):
-        return f'{self.profile.user.username} - {self.product.name}'
-
-    class Meta:
-        verbose_name = 'Oblíbený produkt'
-        verbose_name_plural = 'Oblíbené produkty'
 
         

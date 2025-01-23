@@ -6,33 +6,27 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 
 from .forms import UserRegistrationForm, ProfileForm, UserEditForm, AddressForm
-from .models import Profile, Address, FavoriteProduct
+from .models import Profile, Address
 
-from shop.models import Product
 
 
 
 @login_required(login_url='account:login')
 def dashboard(request):
 
-    profile = request.user.profile 
+    user = request.user
+    profile = user.profile 
     address = profile.address
 
     if request.method == 'GET':
-        user_form = UserEditForm(instance=request.user)
-        profile_form = ProfileForm(instance=request.user.profile)
-        
+        user_form = UserEditForm(instance=user)
+        profile_form = ProfileForm(instance=profile)        
         address_form = AddressForm(instance=address)
-
-        favorite_products = FavoriteProduct.objects.filter(profile=profile)
     
         context = {
             'user_form': user_form,
             'profile_form': profile_form,
             'address_form': address_form,
-
-            'favorite_products': favorite_products,
-
             }
         
         return render(request, 'account/dashboard.html', context)  
@@ -42,12 +36,12 @@ def dashboard(request):
     
     if request.method == 'POST':
         user_form = UserEditForm(
-            instance=request.user,
+            instance=user,
             data=request.POST
             )
     
         profile_form = ProfileForm(
-            instance=request.user.profile,
+            instance=profile,
             data=request.POST,
             files=request.FILES,
             )
@@ -126,4 +120,9 @@ def edit(request):
     }
 
     return render(request, 'account/dashboard.html', context)
+
+
+
+
+
 

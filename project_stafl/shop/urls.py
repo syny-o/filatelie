@@ -27,4 +27,6 @@ urlpatterns = [
         'toggle-favorite/<int:product_id>', 
         views.toggle_favorite, 
         name='toggle_favorite'),
+
+    path('update_cart_wishlist_count', views.update_cart_wishlist_count, name='update_cart_wishlist_count'),
     ]

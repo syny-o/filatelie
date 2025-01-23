@@ -160,7 +160,9 @@
               </a>
             </li>
             <li>
-              <a href=""><i class="ri-heart-line text-dark"></i></a>
+              <a href=""><i class="ri-heart-line text-dark"></i><span id="cart-wishlist-count"
+                  class="cart-box text-white"> {{ request.user.profile.wishlist.all|length }}
+                </span></a>
             </li>
             <li class="menu-link">
               <a href="#!" onclick="openNav()"><i class="ri-shopping-bag-2-line text-dark"></i>

@@ -9,3 +9,7 @@
     Add To Wishlist
     {% endif %}
 </a>
+
+<div id="cart-wishlist-count" hx-swap-oob="innerHTML" style="display: none;">
+    {{ request.user.profile.wishlist.all|length}}
+</div>

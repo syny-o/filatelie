@@ -2,7 +2,7 @@ from django.shortcuts import get_object_or_404, render, HttpResponse
 
 from .models import Category, Product
 
-from account.models import FavoriteProduct, Profile
+from account.models import Profile
 
 
 def product_list(request, category_slug=None):
@@ -21,8 +21,7 @@ def product_list(request, category_slug=None):
         products = products.order_by(ordering_criteria)
 
     # Favorite products
-    favorite_products = FavoriteProduct.objects.filter(profile=request.user.profile)
-    favorite_products = [item.product for item in favorite_products]
+    wishlist = request.user.profile.wishlist.all()
 
     # print(products)
         
@@ -43,7 +42,7 @@ def product_list(request, category_slug=None):
             'ordering_criteria': ordering_criteria,
             'all_categories': categories,
             'products': products,
-            'favorite_products': favorite_products,
+            'favorite_products': wishlist,
 
         }
     )
@@ -54,14 +53,13 @@ def product_list(request, category_slug=None):
 def product_detail(request, id, slug):
     
     product = get_object_or_404(Product, id=id, slug=slug, available=True)
+    profile = Profile.objects.get(user=request.user)
+    wishlist = profile.wishlist.all()
 
-    favorite_products = FavoriteProduct.objects.filter(profile=request.user.profile)
-    favorite_products = [item.product for item in favorite_products]
-
-    is_favorite = product in favorite_products
+    is_favorite = product in wishlist
     
     return render(
-            request,'shop/product/detail.html', {'product': product, 'favorite_products' : favorite_products, 'is_favorite': is_favorite}
+            request,'shop/product/detail.html', {'product': product, 'favorite_products' : wishlist, 'is_favorite': is_favorite}
         )
 
 
@@ -69,19 +67,13 @@ def product_detail(request, id, slug):
 
 def toggle_favorite(request, product_id):
     product = Product.objects.get(id=product_id)
-    is_favorite = False
-
     profile = Profile.objects.get(user=request.user)
-
-    # Favorite products
-    favorite_products = FavoriteProduct.objects.filter(profile=profile)
-    favorite_products = [item.product for item in favorite_products]
-
-    if product in favorite_products:
-        product_to_delete = FavoriteProduct.objects.get(product=product, profile=profile)
-        product_to_delete.delete()
+    
+    if product in profile.wishlist.all():
+        profile.wishlist.remove(product)
+        is_favorite = False
     else:
-        FavoriteProduct.objects.create(product=product, profile=profile)
+        profile.wishlist.add(product)
         is_favorite = True
 
     # Return the updated button HTML
@@ -89,5 +81,11 @@ def toggle_favorite(request, product_id):
         'product': product,
         'is_favorite': is_favorite,
     }))
+
+
+
+def update_cart_wishlist_count(request):
+    print("UPDATED WISHLIST CART")
+    return HttpResponse("10")
     
 

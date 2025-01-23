@@ -1,10 +1,9 @@
 from django.contrib import admin
-from .models import Profile, Address, FavoriteProduct
+from .models import Profile, Address
 from orders.models import Order
 
 
 admin.site.register(Address)
-admin.site.register(FavoriteProduct)
 
 
 class OrderInline(admin.TabularInline):

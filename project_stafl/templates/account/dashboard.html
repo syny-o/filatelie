@@ -245,15 +245,13 @@
                         <h5 class="dashboard-tab-title">Oblíbené produkty</h5>
                         <div
                             class="row g-sm-4 g-3 ratio_product_2 row-cols-xxl-4 row-cols-lg-4 row-cols-sm-3 row-cols-2">
-                            {% for product in favorite_products %}
+
+                            {% for product in request.user.profile.wishlist.all %}
+
                             <div class="col">
-
-
-
                                 <div class="product-box">
                                     <div class="product-img-box">
-                                        <div class="label-box">
-                                            <label class="off-label">50% off</label>
+                                        <!-- <div class="label-box">
                                             <div class="product-option">
                                                 <a href="#!" class="remove-btn">
                                                     <i class="ri-heart-3-fill"></i>
@@ -262,31 +260,26 @@
                                                     data-bs-target="#view"><i class="ri-eye-line"></i></a>
                                                 <a href="#!"><i class="ri-loop-right-fill"></i></a>
                                             </div>
-                                        </div>
+                                        </div> -->
                                         <div class="front">
-                                            <a href="shop-left-sidebar.html">
-                                                <img src="{{ product.product.image.url }}" class="bg-img w-100"
-                                                    alt="" />
+                                            <a href="{% url 'shop:product_detail' product.id product.slug %}">
+                                                <img src="{{ product.image.url }}" class="bg-img w-100" alt="" />
                                             </a>
                                         </div>
-                                        <div class="back">
-                                            <a href="shop-left-sidebar.html">
-                                                <img src="assets/images/product/back/18.jpg" class="bg-img w-100"
-                                                    alt="" />
-                                            </a>
-                                        </div>
+
                                         <div class="product-btn">
-                                            <a href="#!" class="btn solid-btn addtocart-btn">
+                                            <a href="{% url 'cart:cart_add' product.id %}"
+                                                class="btn solid-btn addtocart-btn">
                                                 <div class="button-text">
-                                                    <span>Add to cart</span>
+                                                    <span>do košíku</span>
                                                 </div>
                                             </a>
                                         </div>
                                     </div>
                                     <div class="product-detail">
                                         <div class="product-name-box">
-                                            <a href="shop-left-sidebar.html" class="product-name">Blend suit
-                                                waistcoat</a>
+                                            <a href="{% url 'shop:product_detail' product.id product.slug %}"
+                                                class="product-name">{{ product.name }}</a>
                                             <ul class="rating-product">
                                                 <li><i class="ri-star-fill"></i></li>
                                                 <li><i class="ri-star-fill"></i></li>
@@ -295,10 +288,11 @@
                                                 <li><i class="ri-star-line"></i></li>
                                             </ul>
                                         </div>
-                                        <h6 class="product-price">$36.00 <del>$95.00</del></h6>
+                                        <h6 class="product-price">{{ product.price }}</h6>
                                     </div>
                                 </div>
                             </div>
+
                             {% endfor %}
 
                         </div>
