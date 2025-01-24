@@ -20,3 +20,12 @@ urlpatterns = [
     
     
 ]
+
+
+htmx_urlpatterns = [
+    path('check-if-username-exists/', views.check_if_username_exists, name='check_if_username_exists'),
+]
+
+
+
+urlpatterns += htmx_urlpatterns

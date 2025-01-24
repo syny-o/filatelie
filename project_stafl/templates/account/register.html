@@ -19,9 +19,11 @@
                         <!-- FORM START -->
                         <form class="row g-3" action="{% url 'account:register' %}" method="post">
                             {% csrf_token %}
-                            <div class="form-floating mb-3">
+                            <div class="form-floating mb-3" hx-post="{% url 'account:check_if_username_exists' %}"
+                                hx-trigger="keyup changed delay:0.5s" hx-target="#error-username">
                                 {{ form.username }}
                                 <label for="usernameInput">Uživatelské jméno</label>
+                                <div id="error-username"></div>
                             </div>
                             <div class="form-floating mb-3">
                                 {{ form.email }}

@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import get_user_model
 
 from django.contrib import messages
 
@@ -120,6 +121,25 @@ def edit(request):
     }
 
     return render(request, 'account/dashboard.html', context)
+
+
+
+
+
+
+# HTMX
+def check_if_username_exists(rerquest):
+    # print(rerquest.POST)
+    username = rerquest.POST.get('username').strip()
+
+    if username:
+        if get_user_model().objects.filter(username=username).exists():
+            return HttpResponse("<div style='color:red'>Username already exists</div>")
+        else:
+            return HttpResponse("<div style='color:green'>Username is available</div>")
+    else:
+        return HttpResponse("<div style='color:red'>Username is required</div>")
+
 
 
 
