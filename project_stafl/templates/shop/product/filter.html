@@ -9,64 +9,121 @@
 
         <div class="accordion accordion-section" id="accordionPanelsStayOpenExample">
 
-            <form action="{% url 'shop:product_list' %}" method="GET">
-                <div class="accordion-item">
-                    <h2 class="accordion-header">
-                        <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true"
-                            aria-controls="panelsStayOpen-collapseOne">
-                            KATEGORIE
-                        </button>
-                    </h2>
-                    <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show">
-                        <div class="accordion-body">
-                            <ul class="brand-chack scroll-bar">
-                                {% for c in all_categories %}
-                                <li>
-                                    <input type="checkbox" name="categories" value="{{ c.slug }}" class="chack-box"
-                                        id="{{ c.slug }}" {% if c.slug in selected_categories %}checked{% endif %} />
-                                    <label for="{{ c.slug }}">{{ c.name }}</label>
-                                </li>
-                                {% endfor %}
-                            </ul>
+            <form>
+                {% csrf_token %}
+                <div hx-post="{% url 'shop:product_filter' %}" hx-target="#load-more-list" hx-swap="innerHTML" hx-trigger=" click, keyup">
+
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true"
+                                aria-controls="panelsStayOpen-collapseOne">
+                                HLEDAT
+                            </button>
+                        </h2>
+                        <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show">
+                            
+                            <!-- SEARCHBOX -->
+
+                            <div class="input-group search-input section-sm-b-space">
+                                <div class="d-flex">
+                                    <div class="w-100">
+                                        <input type="text" placeholder="Hledat..." name="searched-text" >
+                                        <div class="icon">
+                                            <i class="ri-search-2-line"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
-                </div>
 
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true"
+                                aria-controls="panelsStayOpen-collapseOne">
+                                SEŘADIT
+                            </button>
+                        </h2>
+                        <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show">
+                            <div class="dropdown featured-menu right-featured-menu">
+                                <select id="ordering-combo" name="ordering-criteria"
+                                    class="drop-btn dropdown-toggle select-dropdown w-100">
+                                    <option value="price" {% if ordering_criteria == "price" %} selected {% endif %}
+                                        class="dropdown-item select-item">dle ceny vzestupně</option>
+                                    <option value="-price" {% if ordering_criteria == "-price" %} selected {% endif %}
+                                        class="dropdown-item select-item">dle ceny sestupně</option>
 
-
-
-                <div class="accordion-item">
-                    <h2 class="accordion-header">
-                        <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#panelsStayOpen-collapse_Four" aria-expanded="true"
-                            aria-controls="panelsStayOpen-collapse_Four">
-                            CENA
-                        </button>
-                    </h2>
-                    <div id="panelsStayOpen-collapse_Four" class="accordion-collapse collapse show">
-                        <div class="accordion-body">
-                            <ul class="brand-chack scroll-bar">
-                                <li>
-                                    <input type="checkbox" class="chack-box" id="LOWER1000" />
-                                    <label for="LOWER1000">Méně jak 1000Kč</label>
-                                </li>
-                                <li>
-                                    <input type="checkbox" class="chack-box" id="HIGHEREQUAL1000" />
-                                    <label for="HIGHEREQUAL1000">1000Kč a více</label>
-                                </li>
-
-                            </ul>
+                                    <option value="name" {% if ordering_criteria == "name" %} selected {% endif %}
+                                        class="dropdown-item select-item">Od A po Z</option>
+                                    <option value="-name" {% if ordering_criteria == "-name" %} selected {% endif %}
+                                        class="dropdown-item select-item">Od Z po A</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="text-center">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true"
+                                aria-controls="panelsStayOpen-collapseOne">
+                                KATEGORIE
+                            </button>
+                        </h2>
+                        <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show">
+                            <div class="accordion-body">
+                                <ul class="brand-chack scroll-bar">
+                                    {% for c in all_categories %}
+                                    <li>
+                                        <input type="checkbox" name="categories" value="{{ c.slug }}" class="chack-box"
+                                            id="{{ c.slug }}" {% if c.slug in selected_categories %}checked{% endif %} />
+                                        <label for="{{ c.slug }}">{{ c.name }}</label>
+                                    </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#panelsStayOpen-collapse_Four" aria-expanded="true"
+                                aria-controls="panelsStayOpen-collapse_Four">
+                                CENA
+                            </button>
+                        </h2>
+                        <div id="panelsStayOpen-collapse_Four" class="accordion-collapse collapse show">
+                            <div class="accordion-body">
+                                <ul class="brand-chack scroll-bar">
+                                    <li>
+                                        <input type="checkbox" class="chack-box" id="LOWER1000" name="price-ranges"
+                                            value="<1000" />
+                                        <label for="LOWER1000">Méně jak 1000Kč</label>
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" class="chack-box" id="HIGHEREQUAL1000" name="price-ranges"
+                                            value=">=1000" />
+                                        <label for="HIGHEREQUAL1000">1000Kč a více</label>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- <div class="text-center">
                     <button type="submit" class="btn solid-btn m-auto">
                         <div class="button-text">
                             <span>Filtrovat</span>
                         </div>
                     </button>
+                </div> -->
                 </div>
             </form>
 

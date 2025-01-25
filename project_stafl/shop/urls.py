@@ -29,3 +29,11 @@ urlpatterns = [
         name='toggle_favorite'),
 
     ]
+
+
+htmx_urlpatterns = [
+    path('product-filter', views.product_filter, name='product_filter'),
+]
+
+
+urlpatterns += htmx_urlpatterns

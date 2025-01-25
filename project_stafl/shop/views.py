@@ -1,4 +1,6 @@
 from django.shortcuts import get_object_or_404, render, HttpResponse
+from django.db.models import Q
+from django.views.decorators.http import require_POST
 
 from .models import Category, Product
 
@@ -8,25 +10,14 @@ from cart.cart import Cart
 
 
 def product_list(request, category_slug=None):
-    category = None
+    # category = None
     categories = Category.objects.all()
     products = Product.objects.filter(available=True)
 
-    # Filter by selected categories
-    selected_categories = request.GET.getlist('categories')  # Retrieve all selected categories
-    ordering_criteria = request.GET.get('ordering-criteria')  # Retrieve all selected orderings
-    # print(request.GET)
-    if selected_categories:
-        products = products.filter(category__slug__in=selected_categories)
-
-    if ordering_criteria:
-        products = products.order_by(ordering_criteria)
 
     # Favorite products
     wishlist = request.user.profile.wishlist.all()
 
-    # print(products)
-        
     
     # if category_slug:
         
@@ -34,14 +25,12 @@ def product_list(request, category_slug=None):
     #     products = products.filter(category=category)
 
         
-    # print(ordering_criteria)
+
         
     return render(
         request,
         'shop/product/list.html',
         {
-            'selected_categories': selected_categories,
-            'ordering_criteria': ordering_criteria,
             'all_categories': categories,
             'products': products,
             'favorite_products': wishlist,
@@ -69,6 +58,11 @@ def product_detail(request, id, slug):
 
 
 
+#################################################
+# HTMX
+#################################################
+
+
 def toggle_favorite(request, product_id):
     product = Product.objects.get(id=product_id)
     profile = Profile.objects.get(user=request.user)
@@ -81,10 +75,74 @@ def toggle_favorite(request, product_id):
         is_favorite = True
 
     # Return the updated button HTML
-    return HttpResponse(render(request, 'shop/product/btn_wishlist.html', {
+    return HttpResponse(render(request, 'shop/product/partials/btn_wishlist.html', {
         'product': product,
         'is_favorite': is_favorite,
     }))
+
+
+
+@require_POST
+def product_filter(request):
+    
+    categories = Category.objects.all()
+    products = Product.objects.filter(available=True)
+
+    # Filter by selected categories
+    searched_text = request.POST.get('searched-text')  # Retrieve all selected categories
+    selected_categories = request.POST.getlist('categories')  # Retrieve all selected categories
+    ordering_criteria = request.POST.get('ordering-criteria')  # Retrieve all selected orderings
+    price_ranges = request.POST.getlist('price-ranges')  # Retrieve all selected price ranges
+    
+
+    
+    if searched_text and len(searched_text)>0:
+        products = products.filter(name__icontains=searched_text)
+
+    if selected_categories:
+        products = products.filter(category__slug__in=selected_categories)
+
+    if ordering_criteria:
+        products = products.order_by(ordering_criteria)
+
+    if price_ranges:
+        # Initialize a combined Q object for flexible querying        
+        price_query = Q()
+
+        # Iterate over the price range values and build the query
+        for price_range in price_ranges:
+            if price_range == '<1000':
+                price_query |= Q(price__lt=1000)
+            elif price_range == '>=1000':
+                price_query |= Q(price__gte=1000)
+
+        # Apply the combined price filter
+        products = products.filter(price_query)
+
+    
+
+    # Favorite products
+    wishlist = request.user.profile.wishlist.all()
+
+    # print(request.POST)
+
+        
+    return render(
+        request,
+        'shop/product/partials/cards.html',
+        {
+            'selected_categories': selected_categories,
+            'ordering_criteria': ordering_criteria,
+            'all_categories': categories,
+            'products': products,
+            'favorite_products': wishlist,
+
+        }
+    )
+    
+
+
+
 
 
 
