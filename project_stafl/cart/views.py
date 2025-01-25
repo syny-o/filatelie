@@ -42,7 +42,7 @@ def add_remove_from_cart(request, product_id):
         is_in_cart = True
 
     # Return the updated button HTML
-    return HttpResponse(render(request, 'shop/product/btn_cart.html', {
+    return HttpResponse(render(request, 'shop/product/partials/btn_cart.html', {
         'product': product,
         'is_in_cart': is_in_cart,
     }))
