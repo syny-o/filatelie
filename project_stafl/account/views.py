@@ -128,9 +128,9 @@ def edit(request):
 
 
 # HTMX
-def check_if_username_exists(rerquest):
-    # print(rerquest.POST)
-    username = rerquest.POST.get('username').strip()
+def check_if_username_exists(request):
+    print(request.POST)
+    username = request.POST.get('username').strip()
 
     if username:
         if get_user_model().objects.filter(username=username).exists():
