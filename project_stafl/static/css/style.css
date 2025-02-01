@@ -281,11 +281,7 @@
   padding-bottom: calc(15px + 15 * (100vw - 320px) / 1600);
 }
 
-.scroll-bar {
-  /* ===== Scrollbar CSS ===== */
-  /* Firefox */
-  /* Chrome, Edge, and Safari */
-}
+
 .scroll-bar {
   scrollbar-width: auto;
   scrollbar-color: rgba(var(--theme-color), 1);
@@ -10839,7 +10835,7 @@ input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
   }
 }
 
-<<<<<<< HEAD
+
 .wishlist-section {
   position: relative;
   z-index: 0;
@@ -13217,7 +13213,7 @@ body.color-2.dark .swiper-nav.swiper-nav-box .swiper-button-prev i {
   font-weight: 500;
   font-size: calc(16px + 2 * (100vw - 320px) / 1600);
 }
-=======
+
 /*--------------------------------------------------------------
 Single Product section style start
 --------------------------------------------------------------*/
@@ -13254,8 +13250,27 @@ SYNY
   height: 100%;
   object-fit: cover;
   object-position: center;
-  
-  
 
 }
->>>>>>> dbbd552713eb74de35652e8868859c7237659375
+
+
+
+.errorlist {
+    display: flex;
+    flex-direction: column;
+    color: red;              /* Make errors red */
+    font-size: 14px;         /* Adjust font size */
+    list-style: none;        /* Remove bullet points */
+    padding: 5px;
+    margin: 5px 0;
+}
+
+/* Style individual errors */
+.errorlist li {
+    background: #ffe6e6;     /* Light red background */
+    /* border-left: 4px solid red; */
+    padding: 5px 10px;
+    margin-bottom: 5px;
+    border-radius: 4px;
+    font-weight: bold;
+}

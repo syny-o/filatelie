@@ -17,10 +17,9 @@
                     </div>
                     <div class="login-box">
                         <!-- FORM START -->
-                        <form class="row g-3" action="{% url 'account:register' %}" method="post">
+                        <form class="row g-3">
                             {% csrf_token %}
-                            <div class="form-floating mb-3" hx-post="{% url 'account:check_if_username_exists' %}"
-                                hx-trigger="keyup changed delay:0.5s" hx-target="#error-username">
+                            <div class="form-floating mb-3">
                                 {{ form.username }}
                                 <label for="usernameInput">Uživatelské jméno</label>
                                 <div id="error-username"></div>
@@ -39,21 +38,14 @@
                             </div>
                             <div class="col-12">
                                 <input type="hidden" name="next" value="{% url 'account:dashboard' %}" />
-                                <button class="btn solid-btn addtocart-btn w-100" type="submit" data-bs-dismiss="modal"
-                                    aria-label="Close">
+                                <button class="btn solid-btn addtocart-btn w-100" hx-post="{% url 'account:register' %}"
+                                    hx-trigger="click" hx-target="#form-errors">
                                     <div class="button-text">
                                         <span>Vytvořit účet</span>
                                     </div>
                                 </button>
+                                <div class="form-errors" id="form-errors"></div>
                             </div>
-                            {% if form.errors %}
-                            <p class="text-danger">
-                                Your username and password didn't match.
-                                Please try again.
-                                {{form.errors}}
-                            </p>
-
-                            {% endif %}
 
 
                         </form>

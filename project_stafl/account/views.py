@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth import get_user_model
+from django.contrib.auth import get_user_model, login, authenticate
 
 from django.contrib import messages
 
@@ -76,13 +76,15 @@ def dashboard(request):
 
 
 def register(request):
-    if request.method == 'POST':
+
+    if request.method == 'POST':  # HTMX request from template
         form = UserRegistrationForm(request.POST)
         if form.is_valid():
 
             # 1. Create user
             new_user = form.save(commit=False)
-            new_user.set_password(form.cleaned_data['password'])  # set_password() is secure way to save password (hashing)
+            raw_password = form.cleaned_data['password']  # ✅ Get raw password before hashing
+            new_user.set_password(raw_password)  # ✅ Hash the password properly
             new_user.save()
 
             # 2. Create user profile (One to One relationship)
@@ -91,11 +93,27 @@ def register(request):
             # 3. Create user address (One to One relationship)
             Address.objects.create(profile=user_profile)
 
-            return render(request, 'account/register_done.html', {'new_user': new_user})
+
+            # 4.authenticate (raw password needed)
+            user = authenticate(request, username=new_user.username, password=raw_password)
+
+            # 5.login
+            if user:
+                login(request, user)            
+
+            
+            # 6.send response back to HTMX
+            response = JsonResponse({"redirect": "/account/dashboard/"})  
+            response["HX-Redirect"] = "/account/dashboard/"  # HTMX Redirect Header
+            return response
         
         else:
-            return HttpResponse("form is not valid")
+            # print(form.errors)
+            return HttpResponse(str(form.errors))    
         
+
+
+
 
     if request.method == 'GET':
         form = UserRegistrationForm()
@@ -121,27 +139,6 @@ def edit(request):
     }
 
     return render(request, 'account/dashboard.html', context)
-
-
-
-
-
-
-# HTMX
-def check_if_username_exists(request):
-    print(request.POST)
-    username = request.POST.get('username').strip()
-
-    if username:
-        if get_user_model().objects.filter(username=username).exists():
-            return HttpResponse("<div style='color:red'>Username already exists</div>")
-        else:
-            return HttpResponse("<div style='color:green'>Username is available</div>")
-    else:
-        return HttpResponse("<div style='color:red'>Username is required</div>")
-
-
-
 
 
 
