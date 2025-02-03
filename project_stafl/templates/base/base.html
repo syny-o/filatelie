@@ -1,6 +1,6 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="cs">
 
 <head>
   <meta charset="UTF-8" />
@@ -37,259 +37,24 @@
 
 <body class="montserrat-font">
 
-
-  <!-- ========== Start header Section ========== -->
-  <header class="header-wrapper">
-    <div class="main-header">
-      <div class="custom-container">
-        <div class="main-sub-head">
-          <div class="left-header">
-            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#primaryMenu"
-              aria-controls="primaryMenu">
-              <span><i class="ri-align-left text-dark"></i></span>
-            </button>
-            <a href="{% url 'home' %}" class="main-logo">
-              <img src="{% static 'images/logo/logo-stafl.jpg' %}" class="light-logo" alt="" />
-              <img src="{% static 'images/logo/logo-white.svg' %}" class="dark-logo" alt="" />
-            </a>
-          </div>
-
-          <!-- Navigation Start -->
-          <nav class="navigation">
-            <div class="nav-section">
-              <div class="header-section">
-                <div class="navbar navbar-expand-xl navbar-light navbar-sticky p-0">
-                  <div class="offcanvas sidebar-menu offcanvas-collapse order-lg-2" id="primaryMenu">
-                    <div class="offcanvas-header sidebar-offcanvas">
-                      <h5 class="mt-1 mb-0">Menu</h5>
-                      <button class="close-offcanvas lead" type="button" data-bs-dismiss="offcanvas" aria-label="Close">
-                        <i class="ri-close-fill"></i>
-                      </button>
-                    </div>
-                    <div class="offcanvas-body">
-                      <!-- Menu-->
-                      <ul class="navbar-nav">
-                        <!-- Home -->
-                        <li class="nav-item dropdown dropdown-mega">
-                          <a class="nav-link dropdown-toggle text-dark" href="#" data-bs-toggle="dropdown">Domů</a>
-                          <div class="dropdown-menu home-menu">
-                            <div class="row g-lg-4 g-3">
-                              <div class="col-xl-3 col-6 mega-box">
-                                <a class="home-box" href="">
-                                  <img class="img-fluid" src="{% static 'images/demo-image/demo-1.png' %}"
-                                    alt="home1" />
-                                  <span>Demo - 1</span>
-                                </a>
-                              </div>
-
-                              <div class="col-xl-3 col-6 mega-box">
-                                <a class="home-box" href="">
-                                  <img class="img-fluid" src="{% static 'images/demo-image/demo-2.png' %}"
-                                    alt="home2" />
-                                  <span>Demo - 2</span>
-                                </a>
-                              </div>
-                              <!-- Add other demos similarly -->
-                            </div>
-                          </div>
-                        </li>
-
-                        <!-- Shop -->
-                        <li class="nav-item dropdown">
-                          <a class="nav-link dropdown-toggle text-dark" data-bs-toggle="dropdown">Obchod</a>
-                          <div class="dropdown-menu custom-drop-menu">
-                            <div class="dropdown-column">
-                              <a class="dropdown-item" href="{% url 'shop:product_list' %}">Vše</a>
-
-                              <!-- Add other shop links -->
-                            </div>
-                          </div>
-                        </li>
-
-                        <!-- Blog -->
-                        <li class="nav-item dropdown">
-                          <a class="nav-link dropdown-toggle text-dark" data-bs-toggle="dropdown">Blog</a>
-                          <div class="dropdown-menu custom-drop-menu">
-                            <div class="dropdown-column">
-                              <a class="dropdown-item" href="{% url 'shop:product_list' %}">Vše</a>
-
-
-                            </div>
-                          </div>
-                        </li>
-
-                        <!-- About -->
-                        <li class="nav-item dropdown">
-                          <a class="nav-link dropdown-toggle text-dark" data-bs-toggle="dropdown">O nás</a>
-                          <div class="dropdown-menu custom-drop-menu">
-                            <div class="dropdown-column">
-                              <a class="dropdown-item" href="{% url 'shop:product_list' %}">Vše</a>
-
-                            </div>
-                          </div>
-                        </li>
-
-                        <!-- Account -->
-                        <li class="nav-item dropdown">
-                          <a class="nav-link dropdown-toggle text-dark" data-bs-toggle="dropdown">Účet</a>
-                          <div class="dropdown-menu custom-drop-menu">
-                            <div class="dropdown-column">
-                              <a class="dropdown-item" href="{% url 'shop:product_list' %}">Vše</a>
-
-                            </div>
-                          </div>
-                        </li>
-
-
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </nav>
-          <!-- Navigation End -->
-
-          <ul class="user-section main-user-menu">
-            <li class="home-icon">
-              <a href="" class="active text-dark"><i class="ri-home-4-line"></i></a>
-            </li>
-            <li class="search-menu">
-              <a href="#!" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"><i
-                  class="ri-search-line text-dark"></i>
-              </a>
-            </li>
-            <li>
-              <a href=""><i class="ri-heart-line text-dark"></i><span id="cart-wishlist-count"
-                  class="cart-box text-white"> {{ request.user.profile.wishlist.all|length }}
-                </span></a>
-            </li>
-            <li class="menu-link">
-
-              {% include 'cart/nav_component.html' %}
-
-            </li>
-            <li class="menu-link">
-              <a href="{% url 'account:dashboard' %}" class="user-box">
-                <i class="ri-user-3-line text-dark"></i>
-                <div class="user-detail">
-                  {% if request.user.is_authenticated %}
-                  <h6 class="text-dark">Přihlášen:</h6>
-                  <h5 class="text-dark">{{ request.user }}</h5>
-                  {% else %}
-                  <h6 class="text-dark">Přihlásit se</h6>
-                  {% endif %}
-                </div>
-              </a>
-              {% if request.user.is_authenticated %}
-              <ul class="sub-menu login-menu">
-                <li>
-                  <form action="{% url 'account:logout' %}" method="post">
-                    {% csrf_token %}
-                    <button type="submit" class="sub-link mt-0 bg-transparent border-0">Odhlásit se</button>
-                </li>
-                </form>
-                <!-- <li>
-                  <a href="" class="sub-link mt-0">Register</a>
-                </li>
-                <li>
-                  <a href="" class="sub-link mt-0">Forgot password</a>
-                </li> -->
-              </ul>
-              {% endif %}
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </header>
-  <!-- ========== End header Section ========== -->
-
-
-
-
-
-
+  {% include './header.html' %}
 
   {% block content %}{% endblock %}
 
+  {% include './footer.html' %}
 
-
-
-  <!-- ========== Start Section ========== -->
-  <footer class="footer-section">
-    <div class="custom-container">
-      <div class="row section-sm-b-space g-0 g-sm-4">
-        <div class="col-xl-4 col-lg-6 col-sm-6">
-          <div class="footer-content">
-            <a href="#" class="logo main-logo">
-              <img src="{% static 'images/logo/logo-stafl.jpg' %}" alt="" />
-            </a>
-            <div class="footer-details">
-              <p>Adresa: <span>Palackého 80, Jablonec nad Nisou</span></p>
-              <a href="tel:(123) 456-7890">Telefon: <span>+420 123 456 789</span></a>
-              <a href="mailto:edgy@contact.no">Email: <span>info@stafl.cz</span></a>
-            </div>
-            <div class="footer-social">
-              <a href="#"><i class="ri-facebook-fill"></i></a>
-              <!-- <a href="#"><i class="ri-google-fill"></i></a> -->
-              <!-- <a href="#"><i class="ri-twitter-x-fill"></i></a> -->
-              <a href="#"><i class="ri-instagram-line"></i></a>
-            </div>
-          </div>
-        </div>
-        <div class="menu-box folder-menu col-xl-2 col-lg-3 col-sm-6">
-          <h5>Společnost</h5>
-          <ul class="footer-menu">
-            <li><a href="#" class="footer-link">O nás</a></li>
-            <li><a href="#" class="footer-link">Kontakt</a></li>
-            <li><a href="#" class="footer-link">FAQs</a></li>
-
-            <li><a href="#" class="footer-link">Hledat</a></li>
-          </ul>
-        </div>
-        <div class="menu-box folder-menu col-xl-2 col-lg-3 col-sm-6">
-          <h5>Odkazy</h5>
-          <ul class="footer-menu">
-            <li><a href="#" class="footer-link">Domů</a></li>
-            <li><a href="#" class="footer-link">Obchod</a></li>
-            <li><a href="#" class="footer-link">Přihlásit</a></li>
-            <li><a href="#" class="footer-link">Registrovat</a></li>
-          </ul>
-        </div>
-        <div class="menu-box col-xl-4 col-sm-6">
-          <h5>Newsletter</h5>
-          <div class="footer-menu">
-            <p class="news-letter-head">
-              Přihlaste se k odběru našeho newsletteru ještě dnes!
-            </p>
-            <form class="news-latter-input">
-              <input type="email" placeholder="Email" />
-              <button type="submit" class="btn solid-btn box-sm-radius">
-                <div class="button-text">
-                  <span>Přihlásit</span>
-                </div>
-              </button>
-            </form>
-          </div>
-        </div>
-      </div>
-      <div class="footer-sub-menu">
-        <h6>
-          Copyright <i class="ri-copyright-line"></i> 2025 Zdeněk Štafl
-        </h6>
-        <a href="#" class="footer-img">
-          <img src="{% static 'images/payment/1.png' %}" class="img-fluid" alt="" />
-        </a>
-      </div>
-    </div>
-  </footer>
-  <!-- ========== End Section ========== -->
 </body>
 
 
 
-
+<!-- ========== Start Theme Button ========== -->
+<div class="theme-btn-flex">
+  <button type="button" class="mode-button mode-change-button">
+    <i id="themeIcon" class="ri-moon-line"></i>
+    <span id="text-value">Dark</span>
+  </button>
+</div>
+<!-- ========== End Theme Button ========== -->
 
 
 <!-- ========== bootstrap js ========== -->

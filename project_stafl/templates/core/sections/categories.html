@@ -1,0 +1,17 @@
+{% load static %}
+
+<section class="shop-collection-section section-md-t-space section-b-space">
+    <div class="custom-container">
+        <div class="title-flex section-sm-b-space d-flex flex-column justify-content-center mb-4">
+            <h2 class="title">Novinky</h2>
+        </div>
+        <div class="row g-xl-4 g-lg-5">
+            <div class="row product-list-section g-sm-4 g-3 row-cols-xxl-4 row-cols-xl-3 row-cols-lg-2 row-cols-md-3 row-cols-2 mt-0 ratio_product load-more-list"
+                id="load-more-list">
+
+                {% include 'shop/product/partials/cards.html' %}
+
+            </div>
+        </div>
+    </div>
+</section>
