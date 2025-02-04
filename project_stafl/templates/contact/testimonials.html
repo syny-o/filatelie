@@ -13,15 +13,10 @@
                     <div class="swiper-wrapper ratio_product">
                         {% for testimonial in testimonials %}
                         <div class="swiper-slide">
-                            <div class="testimonial-box">
+                            <div class="testimonial-box bg-black d-flex flex-column justify-content-between h-100">
                                 <i class="ri-double-quotes-l text-white"></i>
                                 <p>{{ testimonial.quote }}</p>
                                 <div class="testimonial-name-box">
-                                    {% comment %}
-                                    <a href="#!" class="testimonial-img">
-                                        <img src="{% static testimonial.image %}" alt="{{ testimonial.name }}" />
-                                    </a>
-                                    {% endcomment %}
                                     <div class="testimonial-name">
                                         <h5 class="text-white">{{ testimonial.name }}</h5>
                                         <span>{{ testimonial.date }}</span>
@@ -37,7 +32,7 @@
             </div>
         </div>
 
-        <div class="title-flex section-sm-b-space d-flex flex-column justify-content-center mt-3">
+        <div class="title-flex section-sm-b-space d-flex flex-column justify-content-center mt-5">
 
             <div class="swiper-nav swiper-nav-box">
                 <div class="swiper-button-prev swiper-testimonial-prev">
