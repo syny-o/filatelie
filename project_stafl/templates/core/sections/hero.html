@@ -1,6 +1,8 @@
 {% load static %}
 
-<section class="home-section dot-style-1">
+<section class="home-section">
+
+    {% comment %}
     <div class="swiper banner">
         <div class="swiper-wrapper" style="height: 560px; overflow: hidden;">
             <div class=" swiper-slide">
@@ -22,8 +24,18 @@
                     </div>
                 </div>
             </div>
-
         </div>
-
     </div>
+
+    {% endcomment %}
+
+    <div class="d-flex justify-content-center align-items-center overflow-hidden w-100" style="height: 580px;">
+        <img src="{% static 'images/filatelie.webp' %}" class="w-100 h-100 object-fit-cover" alt="">
+    </div>
+
+
+
+
+
+
 </section>
