@@ -8180,6 +8180,7 @@ input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
   position: relative;
   overflow: hidden;
   transition: all 0.3s ease-in-out;
+  border: 1px solid black;
 }
 .instagram-box:hover .overlay-img {
   opacity: 0.9;
