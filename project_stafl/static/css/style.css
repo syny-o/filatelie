@@ -1387,7 +1387,7 @@ a {
 }
 
 .main-logo {
-  width: calc(40px + 50 * (100vw - 320px) / 1600);
+  width: calc(10px + 50 * (100vw - 320px) / 1600);
 }
 .main-logo img {
   width: 100%;
