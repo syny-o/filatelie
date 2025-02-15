@@ -8,7 +8,7 @@
   --yellow: 255, 157, 0;
   --success: 39, 125, 42;
   --insta: 255, 0, 0;
-  /* --theme-color: 53, 191, 191; */
+  --theme-color: 141, 121, 93;
   --theme-color: 50, 50, 50;
   --alert: 234, 73, 73;
   --backgroung: 229, 229, 229;
@@ -2386,7 +2386,7 @@ input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
   padding: calc(4px + 6 * (100vw - 320px) / 1600) calc(8px + 22 * (100vw - 320px) / 1600);
   font-size: calc(11px + 5 * (100vw - 320px) / 1600);
   font-weight: 600;
-  text-transform: capitalize;
+  /* text-transform: capitalize; */
   text-wrap: nowrap;
   display: inline-block;
   transition: all 0.3s ease-in-out;
