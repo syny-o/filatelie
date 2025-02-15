@@ -1,6 +1,6 @@
 {% for product in products %}
 <div class="col-grid-box show">
-    <div class="product-box">
+    <div class="product-box w-75">
         <div class="product-img-box">
             <div class="label-box">
                 <div class="product-option">
@@ -38,7 +38,7 @@
                 </a>
             </div>
         </div>
-        <div class="product-detail">
+        <div class="product-detail text-center">
             <div class="product-name-box">
                 <a href="{% url 'shop:product_detail' product.id product.slug %}"
                     class="product-name">{{product.name}}</a>
