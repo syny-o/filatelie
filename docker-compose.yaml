@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+
+  db:
+    image: postgres
+    environment:
+      POSTGRES_DB: mydb
+      POSTGRES_USER: myuser
+      POSTGRES_PASSWORD: mypassword
+    volumes:
+      - postgres_data:/var/lib/postgresql/data  # Persist database data
+
+
+  web:
+    container_name: django-filatelie-stafl
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      - DJANGO_SETTINGS_MODULE=project_stafl.settingsprod
+    depends_on:
+      - db
+    volumes:
+      - ./media:/app/media  # Persist media files
+      - static:/app/staticfiles
+
+
+  nginx:
+    build: ./nginx
+    volumes:
+      - static:/static 
+    #   - nginx_logs:/var/log/nginx
+    ports:
+      - "80:80"
+    depends_on:
+      - web
+    restart: always
+
+
+volumes:
+  postgres_data:
+  static:
