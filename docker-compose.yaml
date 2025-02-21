@@ -32,11 +32,20 @@ services:
       - static:/static
       - ./media:/media
       - ./logs/nginx:/var/log/nginx
+      - ./certbot/conf:/etc/letsencrypt  # SSL certificates
+      - ./certbot/www:/var/www/certbot   # ACME challenge
     ports:
       - "80:80"
+      - "443:443"  # Enable HTTPS
     depends_on:
       - web
     restart: always
+
+  certbot:
+    image: certbot/certbot
+    volumes:
+      - ./certbot/conf:/etc/letsencrypt
+      - ./certbot/www:/var/www/certbot
 
 
 volumes:
