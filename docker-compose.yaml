@@ -1,4 +1,3 @@
-version: '3.8'
 
 services:
 
@@ -9,7 +8,7 @@ services:
       POSTGRES_USER: myuser
       POSTGRES_PASSWORD: mypassword
     volumes:
-      - postgres_data:/var/lib/postgresql/data  # Persist database data
+      - postgres_data:/var/lib/postgresql/data
 
 
   web:
@@ -22,15 +21,16 @@ services:
     depends_on:
       - db
     volumes:
-      - ./media:/app/media  # Persist media files
-      - static:/app/staticfiles
+      - ./media:/app/media
+      - ./logs/django:/app/logs
+      - static:/app/staticfiles 
 
 
   nginx:
     build: ./nginx
     volumes:
       - static:/static 
-      - ./nginx_logs:/var/log/nginx
+      - ./logs/nginx:/var/log/nginx
     ports:
       - "80:80"
     depends_on:
