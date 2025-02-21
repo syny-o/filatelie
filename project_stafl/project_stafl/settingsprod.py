@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-(#7=l)!ra&ct9ojtjc2^qm+m0pn$(9z*c6x3m186(wh-smts(+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*'] 
+ALLOWED_HOSTS = ['localhost', 'filateliestafl.eu', 'www.filateliestafl.eu', ]
 
 
 # Application definition

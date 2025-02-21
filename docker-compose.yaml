@@ -30,7 +30,7 @@ services:
     build: ./nginx
     volumes:
       - static:/static 
-    #   - nginx_logs:/var/log/nginx
+      - ./nginx_logs:/var/log/nginx
     ports:
       - "80:80"
     depends_on:
