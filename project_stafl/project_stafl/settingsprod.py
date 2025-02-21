@@ -27,6 +27,12 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['localhost', 'filateliestafl.eu', 'www.filateliestafl.eu', ]
 
+CSRF_TRUSTED_ORIGINS = [
+    "http://www.filateliestafl.eu",
+    "https://www.filateliestafl.eu",
+]
+
+
 
 # Application definition
 
