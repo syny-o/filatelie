@@ -3,21 +3,26 @@ services:
 
   db:
     image: postgres
+    restart: always
     environment:
-      POSTGRES_DB: mydb
-      POSTGRES_USER: myuser
-      POSTGRES_PASSWORD: mypassword
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
 
   web:
-    container_name: django-filatelie-stafl
     build: .
+    restart: always
     ports:
       - "8000:8000"
     environment:
-      - DJANGO_SETTINGS_MODULE=project_stafl.settingsprod
+      - DJANGO_SETTINGS_MODULE=project_stafl.settings.prod
+      - SECRET_KEY=${DJANGO_SECRET_KEY}
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
     depends_on:
       - db
     volumes:
@@ -32,20 +37,12 @@ services:
       - static:/static
       - ./media:/media
       - ./logs/nginx:/var/log/nginx
-      - ./certbot/conf:/etc/letsencrypt  # SSL certificates
-      - ./certbot/www:/var/www/certbot   # ACME challenge
     ports:
       - "80:80"
       - "443:443"  # Enable HTTPS
     depends_on:
       - web
     restart: always
-
-  certbot:
-    image: certbot/certbot
-    volumes:
-      - ./certbot/conf:/etc/letsencrypt
-      - ./certbot/www:/var/www/certbot
 
 
 volumes:
