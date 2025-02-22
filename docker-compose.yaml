@@ -41,6 +41,7 @@ services:
       - static:/static
       - ./media:/media
       - ./logs/nginx:/var/log/nginx
+      - ./ssl:/ssl/
     ports:
       - "80:80"
       - "443:443"  # Enable HTTPS
