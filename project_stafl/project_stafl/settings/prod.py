@@ -27,9 +27,9 @@ CSRF_TRUSTED_ORIGINS = [
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ["POSTGRES_DB_NAME"],
-        'USER': os.environ["POSTGRES_DB_USER"],
-        'PASSWORD': os.environ["POSTGRES_DB_PASSWORD"],
+        'NAME': os.environ["POSTGRES_DB"],
+        'USER': os.environ["POSTGRES_USER"],
+        'PASSWORD': os.environ["POSTGRES_PASSWORD"],
         'HOST': 'db',  # This should match the service name in docker-compose.yml
         'PORT': '5432',
     }
