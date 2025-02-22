@@ -11,27 +11,12 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
-import os
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-(#7=l)!ra&ct9ojtjc2^qm+m0pn$(9z*c6x3m186(wh-smts(+'
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = ['localhost', 'filateliestafl.eu', 'www.filateliestafl.eu', ]
-
-CSRF_TRUSTED_ORIGINS = [
-    "http://www.filateliestafl.eu",
-    "https://www.filateliestafl.eu",
-]
 
 
 
@@ -83,20 +68,6 @@ TEMPLATES = [
 WSGI_APPLICATION = 'project_stafl.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/5.1/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'mydb',
-        'USER': 'myuser',
-        'PASSWORD': 'mypassword',
-        'HOST': 'db',  # This should match the service name in docker-compose.yml
-        'PORT': '5432',
-    }
-}
-
 
 
 # Password validation
@@ -135,7 +106,6 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [BASE_DIR/'static'] # Path to the project root static folder
-STATIC_ROOT = BASE_DIR/'staticfiles' # Path to the project root staticfiles folder
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR/'media' # Path to the project root media folder
@@ -155,49 +125,3 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # This is the key that you are going to use to store the cart in the user session. Since Django sessions are managed per visitor, 
 # you can use the same cart session key for all sessions.
 CART_SESSION_ID = 'CART'
-
-
-
-
-
-# Define log directory (inside the container)
-LOG_DIR = BASE_DIR / "logs"
-
-# Ensure the directory exists
-os.makedirs(LOG_DIR, exist_ok=True)
-
-LOGGING = {
-    "version": 1,
-    "disable_existing_loggers": False,
-    "formatters": {
-        "verbose": {
-            "format": "{asctime} {levelname} {module} {message}",
-            "style": "{",
-        },
-        "simple": {
-            "format": "{levelname} {message}",
-            "style": "{",
-        },
-    },
-    "handlers": {
-        "file": {
-            "level": "ERROR",
-            "class": "logging.FileHandler",
-            "filename": LOG_DIR / "django_errors.log",
-            "formatter": "verbose",
-        },
-        "console": {
-            "level": "DEBUG",
-            "class": "logging.StreamHandler",
-            "formatter": "simple",
-        },
-    },
-    "loggers": {
-        "django": {
-            "handlers": ["file", "console"],
-            "level": "ERROR",
-            "propagate": True,
-        },
-    },
-}
-
