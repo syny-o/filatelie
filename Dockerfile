@@ -11,14 +11,13 @@ ENV PYTHONUNBUFFERED=1
 WORKDIR /app
 
 
+# Copy application code
+COPY ./project_stafl .
+
+
 # Install dependencies
-COPY ./requirements.txt /app/requirements.txt
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
-
-
-# Copy the rest of the application code
-COPY ./project_stafl /app
 
 
 # Document that the container listens on port 8000
@@ -26,5 +25,4 @@ EXPOSE 8000
 
 
 # entrypoint shell scripts to be executed
-COPY ./entrypoint.sh /app
 ENTRYPOINT ["sh", "/app/entrypoint.sh"]
