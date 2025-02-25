@@ -30,7 +30,7 @@ services:
     depends_on:
       - db
     volumes:
-      - ./project_stafl:/app/project_stafl
+      - ./project_stafl:/app
       - ./media:/app/media
       - ./logs/django:/app/logs
       - static:/app/staticfiles 
