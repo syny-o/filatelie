@@ -2,7 +2,7 @@
 services:
 
   db:
-    image: postgres
+    image: postgres:16.2
     restart: always
     env_file:
       - .env    
@@ -15,7 +15,7 @@ services:
 
 
   web:
-    build: .
+    build: ./code
     restart: always
     ports:
       - "8000:8000"
@@ -30,14 +30,11 @@ services:
     depends_on:
       - db
     volumes:
-      - ./project_stafl:/app
-      - ./media:/app/media
-      - ./logs/django:/app/logs
-      - static:/app/staticfiles 
+      - ./code:/code
 
 
   nginx:
-    build: ./nginx
+    image: nginx:1.25.5
     restart: always
     ports:
       - "80:80"
@@ -45,19 +42,11 @@ services:
     depends_on:
       - web
     volumes:
-      - static:/static
-      - ./media:/media
-      - ./logs/nginx:/var/log/nginx
-      - ./certbot/conf:/etc/letsencrypt
-      - ./certbot/www:/var/www/certbot
+      - ./nginx/templates:/etc/nginx/templates
+      - ./nginx/logs:/var/log/nginx
+      - ./code:/code      
 
-  certbot:
-    image: certbot/certbot
-    volumes:
-      - ./certbot/conf:/etc/letsencrypt
-      - ./certbot/www:/var/www/certbot
 
 
 volumes:
   postgres_data:
-  static:
