@@ -8,11 +8,11 @@ ENV PYTHONUNBUFFERED=1
 
 
 # Set the working directory in the container
-WORKDIR /app
+WORKDIR /code
 
 
 # Copy application code
-COPY ./project_stafl .
+COPY . .
 
 
 # Install dependencies
@@ -25,4 +25,4 @@ EXPOSE 8000
 
 
 # entrypoint shell scripts to be executed
-ENTRYPOINT ["sh", "/app/entrypoint.sh"]
+ENTRYPOINT ["sh", "entrypoint.sh"]
